@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>G.U.I.D.E. Personality Test</title>
+<meta name="description" content="G.U.I.D.E. Personality Test – Get Your Identity, Discover Employee Potential แบบวัดบุคลิกภาพเพื่อค้นหาตัวตนและศักยภาพของสมาชิกในองค์กร">
+<meta property="og:title" content="G.U.I.D.E. Personality Test">
+<meta property="og:description" content="Get Your Identity, Discover Employee Potential">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #14284b;
+    --navy-2: #1f3d75;
+    --sky: #dcebfa;
+    --sky-2: #eef6fd;
+    --accent: #3b82c4;
+    --purple: #6d4fc2;
+    --green: #2fa36b;
+    --dot-blue: #1f5fd0;
+    --dot-blue-text: #1f5fd0;
+    --dot-yellow: #f5b301;
+    --dot-yellow-text: #9a6a00;
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --text: #14284b;
+    --muted: #55637d;
+    --line: #dbe4f0;
+    --shadow: 0 6px 24px rgba(20, 40, 75, .08);
+    --on-navy: #ffffff;
+    --bar-a: #1f3d75;
+    --bar-b: #9cc7ee;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --navy: #a9cdf3;
+      --navy-2: #7fb2ea;
+      --sky: #1b2c4a;
+      --sky-2: #14213a;
+      --accent: #7fb2ea;
+      --purple: #b39cf5;
+      --green: #5fd39b;
+      --dot-blue: #6aa6ff;
+      --dot-blue-text: #8fbcff;
+      --dot-yellow: #f5c542;
+      --dot-yellow-text: #f5c542;
+      --bg: #0d1626;
+      --surface: #131f36;
+      --text: #e8eef8;
+      --muted: #9fb0cc;
+      --line: #263553;
+      --shadow: 0 6px 24px rgba(0, 0, 0, .35);
+      --on-navy: #0d1626;
+      --bar-a: #7fb2ea;
+      --bar-b: #2d4a77;
+    }
+  }
+  :root[data-theme="dark"] {
+    --navy: #a9cdf3;
+    --navy-2: #7fb2ea;
+    --sky: #1b2c4a;
+    --sky-2: #14213a;
+    --accent: #7fb2ea;
+    --purple: #b39cf5;
+    --green: #5fd39b;
+    --dot-blue: #6aa6ff;
+    --dot-blue-text: #8fbcff;
+    --dot-yellow: #f5c542;
+    --dot-yellow-text: #f5c542;
+    --bg: #0d1626;
+    --surface: #131f36;
+    --text: #e8eef8;
+    --muted: #9fb0cc;
+    --line: #263553;
+    --shadow: 0 6px 24px rgba(0, 0, 0, .35);
+    --on-navy: #0d1626;
+    --bar-a: #7fb2ea;
+    --bar-b: #2d4a77;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Noto Sans Thai", "Sarabun", "Leelawadee UI", system-ui, -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 20px 18px 56px; }
+
+  header.top { display: flex; align-items: center; gap: 10px; padding: 6px 0 22px; }
+  header.top[hidden] { display: none; }
+  .home-btn {
+    margin-left: auto; display: inline-flex; align-items: center; gap: 6px;
+    appearance: none; cursor: pointer; font: inherit; font-size: 14px; font-weight: 600;
+    color: var(--text); background: transparent; border: 1.5px solid var(--line);
+    border-radius: 999px; padding: 8px 14px; min-height: 40px;
+    transition: background .15s ease, transform .12s ease;
+  }
+  .home-btn:hover { background: var(--sky-2); }
+  .home-btn:active { transform: scale(.97); }
+  .home-btn svg { flex: none; }
+  .home-btn { white-space: nowrap; flex: none; }
+  header.top .brand { min-width: 0; line-height: 1.25; }
+  @media (max-width: 420px) {
+    header.top { gap: 8px; }
+    header.top .brand { font-size: 14px; }
+    .home-btn { padding: 8px 12px; font-size: 13.5px; }
+  }
+  .mark { display: block; flex: none; }
+  .brand { font-weight: 700; font-size: 16px; letter-spacing: .2px; }
+  .wm { font-weight: 800; letter-spacing: 1px; }
+  .wm i { font-style: normal; }
+  .wm i:nth-of-type(1) { color: var(--accent); }
+  .wm i:nth-of-type(2) { color: var(--purple); }
+  .wm i:nth-of-type(3) { color: var(--green); }
+  .wm i:nth-of-type(4) { color: var(--accent); }
+  .wm i:nth-of-type(5) { color: var(--purple); }
+  .hero-logo { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 14px 0 4px; }
+  .hero-logo h1 { margin-top: 14px; }
+  .hero-logo .wm { display: block; font-size: clamp(46px, 14vw, 72px); line-height: 1.1; }
+  .hero-logo .sub { display: block; font-size: clamp(19px, 5vw, 24px); font-weight: 600; color: var(--muted); letter-spacing: 3px; margin-top: 2px; }
+  .tagline { color: var(--purple); font-weight: 700; font-size: clamp(16px, 4.4vw, 19px); margin: 12px 0 0; }
+  .th-name { color: var(--muted); font-size: 15px; margin: 4px 0 0; }
+  .purpose { margin: 22px 0 0; font-size: 16px; }
+  .page-title { font-size: 19px; font-weight: 700; margin: 0 0 14px; }
+
+  h1, h2, h3 { line-height: 1.3; margin: 0; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+    padding: 26px 22px;
+  }
+  .lead { color: var(--muted); font-size: 16px; margin: 10px 0 0; }
+
+  /* Intro */
+  .intro h1 { font-size: clamp(30px, 8vw, 42px); font-weight: 800; }
+  .axes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 22px 0 6px; padding: 0; list-style: none; }
+  .axes li { background: var(--sky-2); border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; }
+  .axes b { display: block; font-size: 20px; letter-spacing: 1px; }
+  .axes small { color: var(--muted); font-size: 13.5px; }
+  .note {
+    margin-top: 18px; padding: 12px 14px; border-radius: 14px;
+    background: var(--sky-2); border: 1px dashed var(--line);
+    color: var(--muted); font-size: 14px;
+  }
+
+  /* Buttons */
+  .btn {
+    appearance: none; border: 0; cursor: pointer; font: inherit; font-weight: 600;
+    border-radius: 14px; padding: 13px 20px; min-height: 48px;
+    transition: transform .12s ease, background .15s ease, box-shadow .15s ease, opacity .15s;
+  }
+  .btn:active:not(:disabled) { transform: scale(.98); }
+  .btn-primary { background: var(--navy); color: var(--on-navy); }
+  .btn-primary:hover:not(:disabled) { background: var(--navy-2); }
+  .btn-ghost { background: transparent; color: var(--text); border: 1.5px solid var(--line); }
+  .btn-ghost:hover:not(:disabled) { background: var(--sky-2); }
+  .btn:disabled { opacity: .4; cursor: not-allowed; }
+  .btn-block { width: 100%; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 12px; }
+  .start { margin-top: 22px; }
+
+  /* Quiz */
+  .progress-meta { display: flex; justify-content: space-between; font-size: 14px; color: var(--muted); margin-bottom: 8px; }
+  .bar { height: 10px; background: var(--sky); border-radius: 999px; overflow: hidden; }
+  .bar > i { display: block; height: 100%; background: var(--navy); border-radius: 999px; transition: width .35s ease; }
+  .q-card { margin-top: 18px; padding: 30px 22px 24px; }
+  .q-kicker { color: var(--muted); font-size: 14px; margin: 0 0 8px; }
+  .q-text { font-size: clamp(21px, 5.4vw, 27px); font-weight: 700; min-height: 96px; }
+  .choices { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 22px; }
+  .choices.stack { grid-template-columns: 1fr; }
+  .choice {
+    appearance: none; cursor: pointer; font: inherit; font-weight: 700; font-size: 20px;
+    padding: 22px 12px; min-height: 76px; border-radius: 18px;
+    background: var(--surface); color: var(--text); border: 2px solid var(--line);
+    transition: border-color .15s, background .15s, transform .12s;
+  }
+  .choice.opt { font-size: 17px; font-weight: 600; text-align: left; padding: 18px 18px; }
+  .choice:hover { border-color: var(--accent); background: var(--sky-2); }
+  .choice:active { transform: scale(.98); }
+  .choice[aria-checked="true"] { background: var(--navy); color: var(--on-navy); border-color: var(--navy); }
+  .scale-opt[aria-checked="true"] .num { background: var(--on-navy); color: var(--navy); }
+  .q-kicker.center, .q-text.center { text-align: center; }
+  .likert { margin-top: 26px; }
+  .likert-row { display: grid; grid-template-columns: repeat(5, 1fr); align-items: center; }
+  .likert-labels { align-items: end; margin-bottom: 12px; }
+  .ll { text-align: center; font-size: 12.5px; font-weight: 600; line-height: 1.35; color: var(--muted); }
+  .ll.agree { color: var(--dot-blue-text); }
+  .ll.disagree { color: var(--dot-yellow-text); }
+  .cell { display: flex; justify-content: center; align-items: center; height: 64px; }
+  .dot { --c: var(--muted); appearance: none; cursor: pointer; padding: 0; display: grid; place-items: center; border-radius: 50%; background: transparent; border: 3px solid var(--c); transition: transform .12s ease, background .15s ease, box-shadow .15s ease; }
+  .dot.agree { --c: var(--dot-blue); }
+  .dot.disagree { --c: var(--dot-yellow); }
+  .dot.agree svg { stroke: #ffffff; }
+  .dot.disagree svg { stroke: #3a2a00; }
+  .dot.xl { width: 50px; height: 50px; }
+  .dot.l { width: 40px; height: 40px; }
+  .dot.m { width: 32px; height: 32px; }
+  .dot svg { width: 60%; height: 60%; fill: none; stroke: var(--bg); stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; opacity: 0; transform: scale(.6); transition: opacity .15s, transform .15s; }
+  .dot:hover { background: color-mix(in srgb, var(--c) 16%, transparent); transform: scale(1.06); }
+  .dot[aria-checked="true"] { background: var(--c); }
+  .dot[aria-checked="true"] svg { opacity: 1; transform: none; }
+  @media (min-width: 640px) {
+    .dot.xl { width: 62px; height: 62px; } .dot.l { width: 50px; height: 50px; } .dot.m { width: 38px; height: 38px; }
+    .cell { height: 74px; } .ll { font-size: 14px; }
+  }
+  .nav { display: flex; gap: 12px; margin-top: 18px; }
+  .nav .btn-primary { flex: 1; }
+
+  .enter { animation: slideIn .38s ease both; }
+  @keyframes slideIn { from { opacity: 0; transform: translateX(22px); } to { opacity: 1; transform: none; } }
+  .enter-back { animation: slideBack .38s ease both; }
+  @keyframes slideBack { from { opacity: 0; transform: translateX(-22px); } to { opacity: 1; transform: none; } }
+
+  /* Processing */
+  .processing { text-align: center; padding: 60px 10px; }
+  .spinner {
+    width: 54px; height: 54px; margin: 0 auto 22px; border-radius: 50%;
+    border: 5px solid var(--sky); border-top-color: var(--navy);
+    animation: spin 0.9s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Result */
+  .gallery { margin-top: 34px; }
+  .gallery-head h2 { font-size: clamp(22px, 6vw, 28px); font-weight: 800; }
+  .gallery-head p { color: var(--muted); margin: 6px 0 0; }
+  .type-card { margin-top: 20px; padding: 0; overflow: hidden; scroll-margin-top: 16px; }
+  .type-card img { image-rendering: auto; display: block; width: 100%; aspect-ratio: 10 / 9; object-fit: cover; background: #fff; border-bottom: 1px solid var(--line); }
+  .type-card .body { padding: 18px 20px 22px; }
+  .tc-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .tc-no { font-size: 13px; color: var(--muted); }
+  .tc-code { display: inline-flex; gap: 3px; }
+  .tc-code span { display: inline-grid; place-items: center; width: 26px; height: 30px; border-radius: 8px; background: var(--navy); color: var(--on-navy); font-weight: 800; font-size: 15px; }
+  .tc-code span:nth-child(even) { background: var(--sky); color: var(--navy); }
+  .type-card h3 { font-size: 22px; font-weight: 800; margin-top: 10px; }
+  .type-card .th { color: var(--purple); font-weight: 600; margin-top: 2px; }
+  .type-card .d { color: var(--muted); margin: 10px 0 0; }
+  .type-card h4 { font-size: 15px; margin: 16px 0 6px; }
+  .type-card ul.plain { margin: 0; padding-left: 20px; color: var(--muted); font-size: 14.5px; }
+  .type-card ul.plain li { margin: 3px 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+  .chips li { background: var(--sky-2); border: 1px solid var(--green); color: var(--text); border-radius: 999px; padding: 4px 12px; font-size: 14px; }
+  .gallery-note { color: var(--muted); font-size: 13.5px; margin-top: 16px; }
+  .end-cta { margin-top: 22px; text-align: center; }
+  .type-illus { display: block; width: min(280px, 78%); aspect-ratio: 10 / 9; object-fit: cover; margin: 0 auto 20px; border-radius: 22px; border: 1px solid var(--line); background: #fff; box-shadow: var(--shadow); }
+  .result-hero { text-align: center; padding: 34px 18px 28px; background: var(--sky-2); }
+  .letters { display: flex; justify-content: center; gap: 8px; }
+  .letters span {
+    display: grid; place-items: center; width: clamp(58px, 17vw, 84px); height: clamp(72px, 21vw, 104px);
+    border-radius: 18px; background: var(--navy); color: var(--on-navy);
+    font-size: clamp(38px, 12vw, 58px); font-weight: 800; line-height: 1;
+  }
+  .letters span:nth-child(even) { background: var(--surface); color: var(--navy); border: 2px solid var(--navy); }
+  .type-en { font-size: clamp(24px, 6.5vw, 32px); font-weight: 800; margin-top: 20px; }
+  .type-th { color: var(--purple); font-weight: 600; font-size: 18px; }
+  .type-desc { color: var(--muted); margin: 12px auto 0; max-width: 46ch; }
+
+  .section { margin-top: 26px; }
+  .section h2 { font-size: 20px; margin-bottom: 12px; }
+  .pair { margin-bottom: 18px; }
+  .pair-head { display: flex; justify-content: space-between; font-size: 14.5px; font-weight: 600; margin-bottom: 6px; gap: 8px; }
+  .pair-head .r { text-align: right; }
+  .pair-bar { display: flex; height: 16px; border-radius: 999px; overflow: hidden; background: var(--bar-b); }
+  .pair-bar i { display: block; background: var(--bar-a); transition: width .6s ease; }
+  .pair-note { font-size: 12.5px; color: var(--muted); margin-top: 4px; }
+  .score-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 20px; }
+  .score-grid div { text-align: center; padding: 10px 4px; border-radius: 14px; border: 1px solid var(--line); background: var(--surface); }
+  .score-grid b { display: block; font-size: 20px; }
+  .score-grid small { color: var(--muted); font-size: 12.5px; }
+  .score-grid .win { background: var(--sky); border-color: var(--green); }
+
+  .info-grid { display: grid; gap: 14px; }
+  .info { border: 1px solid var(--line); border-radius: 18px; padding: 16px 18px; background: var(--surface); }
+  .info h3 { font-size: 17px; margin-bottom: 6px; }
+  .info ul { margin: 0; padding-left: 20px; color: var(--muted); }
+  .info li { margin: 4px 0; }
+
+  .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 26px; }
+  .actions .wide { grid-column: 1 / -1; }
+  .disclaimer { margin-top: 24px; font-size: 13.5px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; }
+
+  .credit { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); text-align: center; color: var(--muted); font-size: 13.5px; line-height: 1.7; }
+  .credit p { margin: 0; }
+  .credit strong { color: var(--text); }
+  .credit a { color: var(--accent); text-decoration: none; font-weight: 600; word-break: break-all; }
+  .credit a:hover { text-decoration: underline; }
+  .toast {
+    position: fixed; left: 50%; bottom: 22px; transform: translate(-50%, 20px);
+    background: var(--navy); color: var(--on-navy); padding: 11px 18px; border-radius: 999px;
+    font-size: 14.5px; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; z-index: 10;
+    max-width: calc(100vw - 32px); text-align: center;
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    .spinner { animation: none; border-top-color: var(--navy); }
+  }
+  @media (min-width: 640px) {
+    .wrap { padding-top: 40px; }
+    .card { padding: 34px 32px; }
+    .actions { grid-template-columns: repeat(4, 1fr); }
+    .actions .wide { grid-column: auto; }
+    .score-grid { grid-template-columns: repeat(8, 1fr); }
+    .info-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top" id="top"></header>
+  <main id="app" aria-live="polite"></main>
+  <footer class="credit">
+    <p class="credit-name">Created by <strong>Pornpong Pasokpuckdee</strong></p>
+    <p>Questionnaire design services available</p>
+    <p><a href="mailto:pronpong.pasok@gmail.com">pronpong.pasok@gmail.com</a></p>
+  </footer>
+</div>
+<div id="toast" class="toast" role="status"></div>
+
+<script>
+/* =========================================================
+   DATA — แก้ไขชุดคำถามและผลลัพธ์ได้ที่ส่วนนี้
+   ========================================================= */
+const QUESTIONS = [
+  { id: 1,  letter: "C", statement: "เวลาพบปัญหา ฉันมักรีบลงมือแก้ไข", condition: "+" },
+  { id: 2,  letter: "C", statement: "ฉันอยากเติบโตในการทำงาน ถึงแม้จะต้องเผชิญกับความยากลำบาก", condition: "+" },
+  { id: 3,  letter: "K", statement: "ฉันรู้สึกเฉย ๆ เมื่อคนในทีมขัดแย้งกัน", condition: "-" },
+  { id: 4,  letter: "K", statement: "ฉันยอมช่วยเหลือผู้อื่น ถึงแม้งานของตัวเองจะมีจำนวนมาก", condition: "+" },
+  { id: 5,  letter: "I", statement: "ฉันชอบทำงานร่วมกับคนที่มีแบบแผนชัดเจน", condition: "+" },
+  { id: 6,  letter: "I", statement: "ฉันไม่ชอบงานที่ไม่มีเป้าหมาย", condition: "-" },
+  { id: 7,  letter: "P", statement: "ฉันชอบออกความคิดเห็นมากกว่าการลงมือทำ", condition: "-" },
+  { id: 8,  letter: "P", statement: "ฉันนำประสบการณ์ที่เคยทำสำเร็จมาประยุกต์ใช้กับสถานการณ์ปัจจุบัน", condition: "+" },
+  { id: 9,  letter: "D", statement: "ฉันรู้สึกอึดอัดเมื่อเป้าหมายของงานไม่ชัดเจน", condition: "+" },
+  { id: 10, letter: "D", statement: "ฉันมักเป็นคนตัดสินใจเมื่อทีมประสบปัญหา", condition: "+" },
+  { id: 11, letter: "A", statement: "ฉันยอมรับได้หากเพื่อนมาสายประมาณ 40 นาที", condition: "+" },
+  { id: 12, letter: "A", statement: "ฉันไม่ชอบเป้าหมายของทีมที่มีความไม่แน่นอน", condition: "-" },
+  { id: 13, letter: "E", statement: "ฉันมักไปสังสรรค์กับเพื่อนหลังเลิกงานเมื่อได้รับคำชวน", condition: "+" },
+  { id: 14, letter: "E", statement: "เมื่อมีคนพูดไม่ดีใส่ฉัน ฉันมักจะเงียบ", condition: "-" },
+  { id: 15, letter: "R", statement: "ฉันรู้สึกกังวลเมื่อเพื่อนร่วมงานต้องการทำความรู้จักกับฉัน", condition: "+" },
+  { id: 16, letter: "R", statement: "ฉันมักทบทวนข้อมูลซ้ำ ๆ จนบางครั้งอาจมากเกินไป", condition: "+" }
+];
+
+const PAIRS = [["C", "K"], ["I", "P"], ["D", "A"], ["E", "R"]];
+
+const LETTER_INFO = {
+  C: { en: "Competitive", th: "แข่งขัน" },
+  K: { en: "Cooperative", th: "ร่วมมือ" },
+  I: { en: "Imaginative", th: "จินตนาการ" },
+  P: { en: "Practical", th: "ลงมือจริง" },
+  D: { en: "Determined", th: "มุ่งมั่น" },
+  A: { en: "Adaptive", th: "ยืดหยุ่น" },
+  E: { en: "Expressive", th: "แสดงออก" },
+  R: { en: "Reserved", th: "สงวนท่าที" }
+};
+
+const TIEBREAKS = {
+  CK: { question: "เมื่อทำงานเป็นทีม สิ่งใดสำคัญกับคุณมากกว่า?",
+        options: [{ letter: "C", text: "การผลักดันให้เกิดผลงานที่โดดเด่น" }, { letter: "K", text: "การทำให้ทุกคนร่วมมือกันได้ดี" }] },
+  IP: { question: "เมื่อต้องเริ่มงานใหม่ คุณมักเลือกวิธีใด?",
+        options: [{ letter: "I", text: "คิดค้นแนวทางใหม่ที่แตกต่างจากเดิม" }, { letter: "P", text: "ใช้วิธีที่เคยพิสูจน์แล้วว่าสามารถทำได้จริง" }] },
+  DA: { question: "หากแผนงานเกิดการเปลี่ยนแปลงกะทันหัน คุณมักทำอย่างไร?",
+        options: [{ letter: "D", text: "กำหนดเป้าหมายใหม่แล้วตัดสินใจเดินหน้าทันที" }, { letter: "A", text: "ปรับตัวตามสถานการณ์และเปิดทางเลือกไว้ก่อน" }] },
+  ER: { question: "หลังจากทำงานหนัก คุณมักฟื้นฟูพลังด้วยวิธีใด?",
+        options: [{ letter: "E", text: "พูดคุยหรือทำกิจกรรมร่วมกับผู้อื่น" }, { letter: "R", text: "ใช้เวลาเงียบ ๆ และทบทวนสิ่งต่าง ๆ ตามลำพัง" }] }
+};
+
+const TYPES = {
+  CIDE: { en: "The Challenger", th: "นักท้าชิง", desc: "นักบุกเบิกสายแข่งขัน กล้าคิด กล้าทำ และมีเป้าหมายชัดเจน" },
+  CIDR: { en: "The Strategist", th: "นักวางกลยุทธ์", desc: "นักวางกลยุทธ์ที่สุขุม แข่งขันสูง แต่คิดอย่างรอบคอบก่อนลงมือ" },
+  CIAE: { en: "The Explorer", th: "นักสำรวจ", desc: "นักทดลองที่กระตือรือร้น ชอบความท้าทายและปรับเปลี่ยนเกมเก่ง" },
+  CIAR: { en: "The Maverick", th: "นักคิดนอกคอก", desc: "นักคิดอิสระที่ชอบสร้างแนวทางแตกต่างจากคนทั่วไป" },
+  CPDE: { en: "The Commander", th: "ผู้บัญชาการ", desc: "นักลงมือจริง เด็ดขาด ตรงไปตรงมา และเน้นผลลัพธ์" },
+  CPDR: { en: "The Executor", th: "ผู้ลงมือทำให้สำเร็จ", desc: "คนจริงจัง เป็นระบบ และแสดงความสามารถผ่านคุณภาพของผลงาน" },
+  CPAE: { en: "The Improviser", th: "นักแก้สถานการณ์", desc: "คนคล่องตัว แก้สถานการณ์เก่ง และกล้ารับการแข่งขัน" },
+  CPAR: { en: "The Survivor", th: "นักเอาตัวรอด", desc: "คนรอบคอบ ปรับตัวเก่ง และให้ความสำคัญกับสิ่งที่ใช้งานได้จริง" },
+  KIDE: { en: "The Inspirer", th: "ผู้สร้างแรงบันดาลใจ", desc: "นักสร้างแรงบันดาลใจ มีวิสัยทัศน์และพาทีมเดินหน้าไปด้วยกัน" },
+  KIDR: { en: "The Visionary", th: "ผู้มองอนาคต", desc: "นักคิดอนาคตที่สุขุม มีอุดมการณ์และทิศทางชัดเจน" },
+  KIAE: { en: "The Creator", th: "ผู้สร้างสรรค์", desc: "นักสร้างสรรค์ เป็นมิตร และเปิดรับประสบการณ์ใหม่" },
+  KIAR: { en: "The Dreamer", th: "ผู้ช่างฝัน", desc: "คนมีจินตนาการ อ่อนโยน และให้คุณค่ากับเสรีภาพทางความคิด" },
+  KPDE: { en: "The Organizer", th: "ผู้จัดระบบ", desc: "นักจัดการที่เน้นการทำงานเป็นทีม มีระบบ และรับผิดชอบ" },
+  KPDR: { en: "The Guardian", th: "ผู้พิทักษ์", desc: "คนมั่นคง รอบคอบ และสนับสนุนคนรอบตัวอย่างสม่ำเสมอ" },
+  KPAE: { en: "The Connector", th: "ผู้เชื่อมโยง", desc: "นักประสานงาน เข้ากับคนง่าย และปรับตัวเข้ากับกลุ่มได้ดี" },
+  KPAR: { en: "The Harmonizer", th: "ผู้รักษาสมดุล", desc: "คนสุขุม ยืดหยุ่น และรักษาความสมดุลของกลุ่ม" }
+};
+
+/* ===== G.U.I.D.E. character illustrations (vector) ===== */
+(function (root) {
+  const P = (d, f, x = '') => `<path d="${d}" fill="${f}" ${x}/>`;
+  const C = (cx, cy, r, f, x = '') => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${f}" ${x}/>`;
+  const R = (x, y, w, h, f, rx = 0, e = '') => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${rx}" fill="${f}" ${e}/>`;
+  const E = (cx, cy, rx, ry, f, x = '') => `<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" fill="${f}" ${x}/>`;
+  const L = (pts, w, c, x = '') => `<polyline points="${pts.map(p => p.join(',')).join(' ')}" fill="none" stroke="${c}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" ${x}/>`;
+  const S = (d, c, w, x = '') => `<path d="${d}" fill="none" stroke="${c}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" ${x}/>`;
+  const star = (x, y, s, c) => P(`M${x},${y - 10 * s} L${x + 3 * s},${y - 3 * s} L${x + 10 * s},${y} L${x + 3 * s},${y + 3 * s} L${x},${y + 10 * s} L${x - 3 * s},${y + 3 * s} L${x - 10 * s},${y} L${x - 3 * s},${y - 3 * s}Z`, c);
+  const shade = (hex, f) => {
+    const n = parseInt(hex.slice(1), 16);
+    const cl = v => Math.max(0, Math.min(255, Math.round(v * f)));
+    const r = cl((n >> 16) & 255), g = cl((n >> 8) & 255), b = cl(n & 255);
+    return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+  };
+  const note = (x, y, c, rot) => `<g transform="rotate(${rot} ${x + 11} ${y + 11})">${R(x, y, 22, 22, c, 3)}${R(x + 4, y + 6, 14, 2.5, 'rgba(0,0,0,.12)', 1)}${R(x + 4, y + 12, 10, 2.5, 'rgba(0,0,0,.12)', 1)}</g>`;
+  const leaf = (x, y, rot, c) => `<g transform="translate(${x} ${y}) rotate(${rot})">${P('M0,0 Q16,-22 0,-48 Q-16,-22 0,0Z', c)}${S('M0,-2 L0,-40', 'rgba(255,255,255,.55)', 2)}</g>`;
+  const bulb = (x, y, s = 1) => `<g transform="translate(${x} ${y}) scale(${s})">${C(0, 0, 13, '#ffd95a')}${R(-6, 11, 12, 8, '#8d93a6', 2)}${S('M-5,4 Q0,-6 5,4', '#f0a63a', 2)}${S('M0,-22 L0,-30 M-19,-12 L-26,-17 M19,-12 L26,-17 M-22,4 L-30,4 M22,4 L30,4', '#f5c542', 3)}</g>`;
+  const bust = (x, y, skin, hair, shirt) =>
+    P(`M${x - 42},${y + 80} Q${x - 38},${y + 30} ${x},${y + 26} Q${x + 38},${y + 30} ${x + 42},${y + 80}Z`, shirt) +
+    C(x, y + 2, 22, skin) +
+    P(`M${x - 24},${y} Q${x - 26},${y - 28} ${x},${y - 28} Q${x + 26},${y - 28} ${x + 24},${y} Q${x + 8},${y - 14} ${x - 24},${y}Z`, hair);
+  const backHead = (x, y, hair, shirt) =>
+    P(`M${x - 46},${y + 80} Q${x - 42},${y + 28} ${x},${y + 24} Q${x + 42},${y + 28} ${x + 46},${y + 80}Z`, shirt) + C(x, y, 27, hair);
+
+  const hardHat = (x, y, c) => P(`M${x - 25},${y - 4} Q${x - 26},${y - 32} ${x},${y - 34} Q${x + 26},${y - 32} ${x + 25},${y - 4} Q${x},${y - 11} ${x - 25},${y - 4}Z`, c) + R(x - 5, y - 33, 10, 26, shade(c, .88), 3) + R(x - 29, y - 6, 58, 7, shade(c, .92), 3);
+  /* ---------- person ---------- */
+  function person(o) {
+    const d = {
+      skin: '#f2c7a4', hair: '#3b2416', hairStyle: 'short', top: '#2e5fb0', inner: '#ffffff', pants: '#22304f', shoe: '#333333',
+      armL: [[166, 140], [152, 186], [154, 226]], armR: [[234, 140], [248, 186], [246, 226]],
+      legL: [[183, 226], [181, 276], [180, 318]], legR: [[217, 226], [219, 276], [220, 318]],
+      coat: false, glasses: false, beard: null, mouth: 'smile', eyes: 'open', hat: null, tx: 0, ty: 0,
+      torsoBottom: 226, pre: '', mid: '', post: '', torsoExtra: '', hand: null, shoeDir: [-1, 1], brow: null, tie: false
+    };
+    o = Object.assign({}, d, o);
+    const sk = o.skin, sh = shade(sk, .9), hand = o.hand || sk, brow = o.brow || shade(o.hair, .8);
+    let g = o.pre + hairBack(o.hairStyle, o.hair);
+    // legs + shoes
+    g += L(o.legL, 22, o.pants) + L(o.legR, 22, o.pants);
+    [[o.legL, o.shoeDir[0]], [o.legR, o.shoeDir[1]]].forEach(([l, dir]) => {
+      const f = l[l.length - 1];
+      g += E(f[0] + dir * 6, f[1] + 3, 16, 8.5, o.shoe) + E(f[0] + dir * 6, f[1] + 8, 16, 3, 'rgba(0,0,0,.18)');
+    });
+    // neck + torso
+    g += R(191, 108, 18, 26, sh, 6);
+    const tb = o.coat ? 274 : o.torsoBottom;
+    const torso = o.coat
+      ? `M160,142 Q160,128 176,128 L224,128 Q240,128 240,142 L252,${tb} L148,${tb} Z`
+      : `M162,142 Q162,128 176,128 L224,128 Q238,128 238,142 L233,${tb} L167,${tb} Z`;
+    g += P(torso, o.top);
+    g += P('M185,128 L200,166 L215,128 Z', o.inner);
+    g += P('M176,128 L200,170 L184,128 Z', shade(o.top, .8)) + P('M224,128 L200,170 L216,128 Z', shade(o.top, .8));
+    g += S('M200,170 L200,' + Math.min(tb - 6, 222), shade(o.top, .78), 2);
+    g += o.torsoExtra;
+    g += o.mid;
+    // arms
+    [o.armL, o.armR].forEach(a => {
+      g += L(a, 16, o.top) + L(a.slice(0, 2), 16, o.top);
+      const h = a[a.length - 1];
+      g += C(h[0], h[1], 8.5, hand);
+    });
+    // head
+    if (o.hairStyle === 'hijab') g += hijabBack(o.hairColorHijab || o.hijab);
+    g += E(172, 92, 5.5, 8, sh) + E(228, 92, 5.5, 8, sh);
+    g += E(200, 88, 28, 31, sk);
+    if (o.beard) g += P('M172,90 Q172,124 200,128 Q228,124 228,90 Q224,108 212,109 Q200,104 188,109 Q176,108 172,90Z', o.beard);
+    // eyes
+    if (o.eyes === 'closed') {
+      g += S('M181,90 Q188,96 195,90', '#2a2430', 3) + S('M205,90 Q212,96 219,90', '#2a2430', 3);
+    } else {
+      g += E(188, 90, 3.6, 4.6, '#22242b') + E(212, 90, 3.6, 4.6, '#22242b');
+      g += C(189.3, 88.4, 1.2, '#fff') + C(213.3, 88.4, 1.2, '#fff');
+    }
+    g += S('M180,79 Q188,74 196,78', brow, 2.6) + S('M204,78 Q212,74 220,79', brow, 2.6);
+    g += C(180, 101, 5.5, '#ff8f8f', 'opacity=".28"') + C(220, 101, 5.5, '#ff8f8f', 'opacity=".28"');
+    if (o.mouth === 'big') g += P('M188,101 Q200,119 212,101 Z', '#8a3535') + P('M191,101 Q200,106 209,101 Z', '#fff');
+    else if (o.mouth === 'soft') g += S('M192,104 Q200,110 208,104', '#8a3535', 2.8);
+    else g += S('M190,103 Q200,113 210,103', '#8a3535', 3);
+    g += hairFront(o.hairStyle, o.hair);
+    if (o.hairStyle === 'hijab') g += hijabFront(o.hijab);
+    if (o.hat === 'cap') g += P('M167,78 Q168,43 200,41 Q232,43 233,78 Q200,68 167,78Z', '#1f8f9e') + P('M198,72 Q238,64 254,78 Q252,87 238,85 L198,80Z', '#f08a2c') + C(200,42,4,'#166c78');
+    if (o.hat === 'beanie') g += P('M167,80 Q166,40 200,38 Q234,40 233,80 Z', '#3f7a52') + R(165, 68, 70, 15, '#2f6041', 7) + C(200, 36, 5, '#3f7a52');
+    if (o.glasses) g += `<circle cx="188" cy="90" r="11" fill="rgba(255,255,255,.18)" stroke="#23242c" stroke-width="3"/><circle cx="212" cy="90" r="11" fill="rgba(255,255,255,.18)" stroke="#23242c" stroke-width="3"/>` + S('M199,89 L201,89', '#23242c', 3) + S('M177,89 L171,86 M223,89 L229,86', '#23242c', 2.5);
+    g += o.post;
+    return `<g transform="translate(${o.tx} ${o.ty})">${g}</g>`;
+  }
+
+  function hairBack(s, c) {
+    switch (s) {
+      case 'longStraight': return P('M164,84 Q160,44 200,42 Q240,44 236,84 L248,160 Q200,174 152,160Z', c);
+      case 'longWavy': return P('M162,84 Q156,42 200,40 Q244,42 238,84 Q252,120 238,150 Q250,172 236,184 L164,184 Q150,172 162,150 Q148,120 162,84Z', c);
+      case 'grayBob': return P('M166,84 Q162,46 200,44 Q238,46 234,84 L240,128 Q200,140 160,128Z', c);
+      case 'afro': return C(200, 78, 47, c);
+      case 'curlyBig': return C(166, 100, 13, c) + C(234, 100, 13, c) + C(160, 84, 12, c) + C(240, 84, 12, c);
+      case 'curlBun': return C(168, 96, 10, c) + C(232, 96, 10, c);
+      default: return '';
+    }
+  }
+  function hairFront(s, c) {
+    const cap = `M170,88 Q166,48 200,47 Q234,48 230,88 Q226,68 206,64 Q186,70 176,66 Q171,74 170,88Z`;
+    switch (s) {
+      case 'short': return P(cap, c);
+      case 'tousle': return P(cap, c) + C(184, 54, 10, c) + C(206, 49, 11, c) + C(224, 58, 9, c) + C(172, 68, 8, c);
+      case 'bun': return P('M170,88 Q166,50 200,48 Q234,50 230,88 Q224,66 200,64 Q176,66 170,88Z', c) + C(200, 40, 14, c);
+      case 'curlyBig': return P(cap, c) + [[172, 68], [182, 54], [198, 48], [214, 49], [228, 58], [232, 74], [190, 60], [218, 62]].map(p => C(p[0], p[1], 13, c)).join('');
+      case 'afro': return P(cap, c) + C(182, 58, 12, c) + C(204, 52, 13, c) + C(224, 60, 11, c) + C(172, 74, 9, c) + C(230, 74, 9, c);
+      case 'longStraight': return P('M170,92 Q164,48 200,48 Q236,48 230,92 Q222,62 204,60 Q182,62 170,92Z', c);
+      case 'longWavy': return P('M170,92 Q164,48 200,47 Q236,48 230,92 Q224,64 200,62 Q178,64 170,92Z', c);
+      case 'grayBob': return P('M168,92 Q164,48 200,47 Q236,48 232,92 Q226,66 204,62 Q182,68 168,92Z', c);
+      case 'graySides': return P('M172,80 Q172,54 200,52 Q228,54 228,80 Q218,64 200,62 Q182,64 172,80Z', c) + C(171, 88, 7, c) + C(229, 88, 7, c);
+      case 'curlBun': return P(cap, c) + C(216, 44, 15, c) + C(178, 60, 11, c) + C(192, 52, 12, c) + C(226, 62, 10, c) + C(171, 76, 9, c) + S('M168,76 Q200,62 232,76', '#f08a2c', 8);
+      case 'pinkBun': return P(cap, c) + C(200, 36, 18, c) + C(178, 50, 8, c) + C(222, 50, 8, c);
+      case 'capHair': return P('M170,90 Q168,72 176,66 L178,90Z', c) + P('M230,90 Q232,72 224,66 L222,90Z', c);
+      default: return '';
+    }
+  }
+  function hijabBack(c) {
+    return P('M162,90 Q158,40 200,38 Q242,40 238,90 L250,150 Q200,162 150,150Z', c);
+  }
+  function hijabFront(c) {
+    return `<ellipse cx="200" cy="88" rx="31" ry="34" fill="none" stroke="${c}" stroke-width="9"/>` +
+      P('M168,114 Q200,146 232,114 L240,146 Q200,160 160,146Z', c) + S('M170,116 Q200,136 230,116', shade(c, .8), 2);
+  }
+
+  /* ---------- scenes ---------- */
+  const SC = {};
+
+  SC.CIDE = {
+    tint: '#cfe3ff',
+    bg: P('M236,324 L312,196 L342,248 L366,222 L400,324Z', '#8fb8ea') + P('M312,196 L296,224 L312,216 L328,226Z', '#ffffff') +
+      L([[312, 196], [312, 162]], 3, '#555b6b') + P('M312,162 L340,171 L312,180Z', '#f08a2c') +
+      S('M286,166 L294,175 M336,196 L328,204 M300,148 L303,158 M326,148 L322,158', '#f5c542', 3.5) +
+      P('M56,330 L96,304 Q130,288 170,298 Q204,306 218,330Z', '#a5a9b6') + P('M96,304 Q130,288 170,298 L148,308Z', '#c9ccd6'),
+    people: [{
+      skin: '#f0c095', hair: '#4a2e1a', hairStyle: 'tousle', top: '#2f62b8', inner: '#f4f4f6', pants: '#1f2b4a', shoe: '#e8862c', mouth: 'big',
+      armR: [[234, 140], [278, 112], [318, 76]], armL: [[166, 140], [138, 178], [172, 204]],
+      legL: [[183, 226], [150, 262], [132, 296]], legR: [[217, 226], [234, 278], [238, 320]], shoeDir: [-1, 1],
+      pre: R(226, 138, 28, 66, '#ea7f25', 11),
+      torsoExtra: L([[178, 132], [176, 204]], 8, '#f08a2c') + L([[222, 132], [224, 204]], 8, '#f08a2c') + R(166, 204, 68, 8, '#6b4a2b', 2)
+    }]
+  };
+
+  SC.CIDR = {
+    tint: '#e6defa',
+    bg: L([[246, 196], [226, 324]], 6, '#6b6f7c') + L([[336, 196], [356, 324]], 6, '#6b6f7c') +
+      R(205, 46, 172, 152, '#ffffff', 8, 'stroke="#8a90a0" stroke-width="6"') +
+      R(222, 60, 22, 20, '#ffd966', 3) + R(346, 62, 20, 18, '#b8b0f0', 3) + R(226, 160, 22, 20, '#ffd966', 3) + R(348, 152, 18, 18, '#ffe58a', 3) +
+      S('M224,98 l14,14 m0,-14 l-14,14', '#1f2b4a', 3.5) + S('M346,110 l12,12 m0,-12 l-12,12', '#1f2b4a', 3.5) +
+      S('M250,92 Q272,70 306,84', '#5b6478', 3) + P('M306,84 L296,78 L298,90Z', '#5b6478') +
+      P('M274,176 L274,166 Q264,164 264,150 Q266,134 284,122 L280,106 L294,114 Q318,118 324,146 L324,164 Q326,170 330,176Z', '#1f2b4a') +
+      R(268, 176, 66, 10, '#1f2b4a', 3) + C(292, 130, 2.6, '#fff') +
+      R(300, 300, 74, 10, '#5b6478', 2) + R(306, 290, 62, 10, '#7b8399', 2) + R(302, 280, 66, 10, '#4a5266', 2) +
+      P('M26,322 h40 l-5,-28 h-30z', '#8b8fa0') + P('M46,296 Q14,266 22,232 Q50,258 46,296Z', '#5fae7b') + P('M46,296 Q74,268 66,240 Q40,262 46,296Z', '#7cc496') + P('M46,296 Q40,262 52,236 Q58,266 46,296Z', '#4c9a68'),
+    people: [{
+      tx: -46, skin: '#f3c8a5', hair: '#1d1a22', hairStyle: 'bun', glasses: true, top: '#3b2f8f', inner: '#8f80e0', pants: '#2c2a72', shoe: '#1f1f26', mouth: 'soft',
+      armL: [[166, 140], [160, 188], [220, 182]], armR: [[234, 140], [218, 176], [207, 120]],
+      legL: [[186, 226], [186, 276], [184, 318]], legR: [[214, 226], [214, 276], [218, 318]]
+    }]
+  };
+
+  SC.CIAE = {
+    tint: '#d9f0e6',
+    bg: P('M30,326 L128,208 L206,326Z', '#b4d4f0') + P('M118,326 L226,226 L340,326Z', '#a6d3ae') + P('M226,226 L208,246 L226,240 L244,250Z', '#ffffff'),
+    people: [{
+      skin: '#f0c09a', hair: '#5b3a22', hairStyle: 'capHair', hat: 'cap', top: '#1f9aa8', inner: '#e9f5f6', pants: '#cbb68c', shoe: '#6b4a2f', mouth: 'big',
+      pre: R(138, 132, 36, 80, '#3f7b5a', 13),
+      torsoExtra: L([[178, 132], [176, 204]], 7, '#2f5f45') + L([[222, 132], [224, 204]], 7, '#2f5f45') + R(166, 204, 68, 8, '#7a5a34', 2),
+      mid: `<g transform="rotate(-12 138 204)">${P('M96,180 L150,172 L176,218 L122,230Z', '#f1e3b3')}${S('M123,176 L149,224', '#d3c28c', 2)}${P('M104,186 L122,182 L128,200 L110,204Z', '#a6d3ae')}${P('M136,196 L154,192 L160,208 L142,212Z', '#b4d4f0')}</g>`,
+      armL: [[166, 140], [146, 186], [152, 214]], armR: [[234, 140], [266, 118], [276, 92]],
+      legL: [[183, 226], [164, 272], [150, 316]], legR: [[217, 226], [230, 276], [246, 320]],
+      post: C(281, 82, 15, '#2b2f3a') + C(281, 82, 11, '#ffffff') + P('M281,71 L285,82 L277,82Z', '#e5484d') + P('M281,93 L285,82 L277,82Z', '#7a7f90') + C(281, 82, 2, '#2b2f3a') + C(281, 66, 3, '#f5c542')
+    }]
+  };
+
+  SC.CIAR = {
+    tint: '#eadffa',
+    bg: R(116, 252, 146, 72, '#b9bcc8', 10) + R(116, 252, 146, 15, '#d3d5de', 7) +
+      [[285, 62, 22], [313, 50, 26], [340, 64, 20], [314, 78, 22]].map(c => C(c[0], c[1], c[2], '#f4f0ff', 'stroke="#cfc4f3" stroke-width="3"')).join('') +
+      [[285, 62, 20], [313, 50, 24], [340, 64, 18], [314, 78, 20]].map(c => C(c[0], c[1], c[2], '#f4f0ff')).join('') +
+      C(312, 58, 12, '#ffd95a') + R(306, 68, 12, 8, '#8d93a6', 2) + C(262, 100, 7, '#f4f0ff', 'stroke="#cfc4f3" stroke-width="3"') + C(250, 118, 4, '#f4f0ff', 'stroke="#cfc4f3" stroke-width="2"') +
+      star(362, 30, 1, '#b39cf5') + star(360, 100, .7, '#b39cf5'),
+    people: [{
+      skin: '#f0c6a4', hair: '#6a3fc9', hairStyle: 'curlyBig', top: '#6b4bc0', inner: '#5a3eaa', pants: '#1c1c24', shoe: '#7a52d6', shoeDir: [1, 1], mouth: 'soft',
+      torsoBottom: 242,
+      torsoExtra: S('M176,130 Q200,156 224,130', '#4c3391', 7) + L([[192, 152], [190, 186]], 3, '#efe9ff') + L([[208, 152], [210, 186]], 3, '#efe9ff'),
+      legL: [[190, 238], [256, 242], [262, 298]], legR: [[212, 236], [276, 232], [282, 292]],
+      armL: [[166, 140], [158, 188], [208, 208]], armR: [[234, 140], [258, 176], [238, 200]],
+      mid: `<g transform="rotate(-14 205 200)">${R(180, 184, 52, 36, '#2b2b36', 4)}${R(184, 188, 44, 28, '#f4f4f8', 2)}${S('M190,196 h30 M190,203 h24 M190,210 h28', '#c9c9d6', 2)}</g>`,
+      post: L([[242, 196], [226, 210]], 3.5, '#22222a')
+    }]
+  };
+
+  const board2 = (x, y, w, h) => R(x, y, w, h, '#ffffff', 8, 'stroke="#8a90a0" stroke-width="6"');
+  const icon = (x, y, c) => C(x, y - 8, 7, c) + P(`M${x - 11},${y + 14} Q${x - 10},${y + 2} ${x},${y + 2} Q${x + 10},${y + 2} ${x + 11},${y + 14}Z`, c);
+
+  SC.CPDE = {
+    tint: '#ffe3df',
+    bg: L([[236, 210], [222, 324]], 6, '#6b6f7c') + L([[350, 210], [364, 324]], 6, '#6b6f7c') +
+      board2(206, 44, 172, 168) + icon(240, 84, '#5b6478') + icon(292, 112, '#5b6478') + icon(344, 84, '#5b6478') +
+      S('M254,84 L276,100', '#8a90a0', 3) + S('M318,100 L332,88', '#8a90a0', 3) + S('M292,132 L292,150', '#8a90a0', 3) + P('M292,156 L286,146 L298,146Z', '#8a90a0') +
+      C(310, 182, 20, '#ffffff', 'stroke="#d4433b" stroke-width="5"') + C(310, 182, 11, '#ffffff', 'stroke="#d4433b" stroke-width="4"') + C(310, 182, 4, '#d4433b') +
+      S('M226,190 L268,190', '#8a90a0', 3) + P('M274,190 L264,184 L264,196Z', '#8a90a0'),
+    people: [{
+      tx: -40, skin: '#8f5c3d', hair: '#3a2418', hairStyle: 'afro', top: '#1f2f5e', inner: '#d9483f', pants: '#1b2547', shoe: '#1c1c22', mouth: 'big',
+      pre: P('M164,134 L112,300 Q200,318 288,300 L236,134Z', '#d4433b') + P('M164,134 L146,300 Q200,310 254,300 L236,134Z', '#b5322d'),
+      torsoExtra: E(167, 132, 15, 7, '#e7b93e') + E(233, 132, 15, 7, '#e7b93e') + R(166, 204, 68, 9, '#e7b93e', 2) + R(194, 203, 12, 11, '#f5d36a', 2) + C(190, 176, 3, '#e7b93e') + C(210, 176, 3, '#e7b93e'),
+      armL: [[166, 140], [136, 178], [172, 206]], armR: [[234, 140], [276, 122], [318, 106]],
+      legL: [[183, 226], [160, 274], [140, 320]], legR: [[217, 226], [242, 274], [262, 320]]
+    }]
+  };
+
+  SC.CPDR = {
+    tint: '#dde8fa',
+    bg: R(204, 46, 164, 196, '#f1f4fa', 10, 'stroke="#c9d2e3" stroke-width="3"') + R(204, 46, 164, 18, '#dfe6f3', 10) +
+      [0, 1, 2, 3].map(i => {
+        const y = 78 + i * 38, xs = [246, 266, 290, 310][i], ws = [70, 58, 48, 42][i];
+        return R(216, y, 20, 20, '#2fa36b', 5) + S(`M221,${y + 10} l4,4 l8,-9`, '#fff', 3) + R(xs, y + 4, ws, 12, '#3b82c4', 5) + S(`M216,${y + 30} H356`, '#dfe6f3', 2);
+      }).join(''),
+    people: [{
+      tx: -50, skin: '#f2c7a4', hair: '#1a1a22', hairStyle: 'short', glasses: true, top: '#243a6b', inner: '#f4f4f6', pants: '#5c5c66', shoe: '#1f1f26', mouth: 'soft',
+      armL: [[166, 140], [154, 186], [188, 200]], armR: [[234, 140], [230, 182], [206, 196]],
+      mid: `<g transform="rotate(-10 192 194)">${R(168, 178, 46, 32, '#20242f', 5)}${R(172, 182, 38, 24, '#dfe7ff', 3)}${S('M176,190 h20 M176,197 h14', '#7d8bab', 2)}</g>`,
+      post: L([[206, 196], [198, 206]], 3, '#222'),
+      legL: [[186, 226], [186, 276], [184, 318]], legR: [[214, 226], [214, 276], [218, 318]]
+    }]
+  };
+
+  const kneelLegs = { legL: [[183, 226], [150, 262], [162, 290]], legR: [[217, 226], [238, 286], [196, 288]] };
+
+  SC.CPAE = {
+    tint: '#fde9d3',
+    bg: R(250, 264, 56, 54, '#1f8a6b', 7) + R(304, 252, 58, 68, '#f08a2c', 7) + C(334, 250, 11, '#f08a2c') + R(282, 212, 52, 48, '#1f8a6b', 7) + C(336, 236, 10, '#1f8a6b') +
+      S('M296,190 L302,176 M312,196 L324,184 M280,196 L272,184', '#f5a52c', 4),
+    people: [Object.assign({
+      tx: -40, ty: 40, skin: '#f2c7a4', hair: '#6a3d24', hairStyle: 'curlBun', top: '#ee8a2e', inner: '#ee8a2e', pants: '#5d6b3a', shoe: '#5a3f2a', hand: null, mouth: 'big', shoeDir: [1, -1],
+      armL: [[166, 140], [148, 192], [156, 250]], armR: [[234, 140], [268, 170], [294, 192]],
+      torsoExtra: R(166, 206, 68, 8, '#5a3f2a', 2)
+    }, kneelLegs)]
+  };
+
+  SC.CPAR = {
+    tint: '#e4ecd6',
+    bg: `<g transform="rotate(4 334 210)">${R(288, 134, 92, 136, '#f0dfb8', 8, 'stroke="#c8b382" stroke-width="4"')}${P('M334,156 L356,165 Q356,192 334,206 Q312,192 312,165Z', '#e6f2e9', 'stroke="#4a8f6a" stroke-width="4"')}${S('M324,178 l7,8 l13,-15', '#4a8f6a', 4)}${S('M302,244 L322,230 L344,244 L366,230', '#4a8f6a', 4)}${P('M366,230 L356,228 L362,238Z', '#4a8f6a')}</g>` +
+      E(322, 276, 22, 8, '#a9adb8') + E(352, 280, 18, 7, '#c0c3cc'),
+    people: [Object.assign({
+      tx: -50, ty: 40, skin: '#efc39f', hair: '#3a2a20', hairStyle: 'none', hat: 'beanie', beard: '#3a2a20', top: '#566d3c', inner: '#d8d2c4', pants: '#7a6b4f', shoe: '#4a3a2a', hand: '#2b2b30', mouth: 'soft', shoeDir: [1, -1],
+      pre: R(140, 134, 36, 78, '#7a5a3a', 12),
+      armL: [[166, 140], [146, 192], [150, 250]], armR: [[234, 140], [256, 190], [242, 250]],
+      post: R(124, 246, 60, 38, '#3d5a80', 6) + S('M138,246 Q154,224 170,246', '#2b3f5c', 5) + R(148, 258, 12, 9, '#e7c15a', 2) + C(150, 250, 8.5, '#2b2b30')
+    }, kneelLegs)]
+  };
+
+  const aud = (x, y, hair, shirt) => backHead(x, y, hair, shirt);
+  SC.KIDE = {
+    tint: '#dcecff',
+    bg: '',
+    people: [{
+      skin: '#eec19a', hair: '#1a1418', hairStyle: 'longStraight', top: '#86b4ea', inner: '#ffffff', pants: '#4f7fc4', shoe: '#f0f0f4', mouth: 'big',
+      armL: [[166, 140], [132, 164], [100, 150]], armR: [[234, 140], [268, 162], [302, 146]]
+    }],
+    fg: S('M322,96 L334,80 M340,118 L356,108 M312,78 L314,62 M78,118 L68,104 M62,140 L48,134', '#f5c542', 4.5) +
+      aud(40, 326, '#5a3b2a', '#243a6b') + aud(104, 340, '#20222c', '#2f4a86') + aud(300, 340, '#7a4a2e', '#c9cfe6') + aud(362, 326, '#2a2018', '#3c6a8c')
+  };
+
+  SC.KIDR = {
+    tint: '#e5defa',
+    bg: `<defs><linearGradient id="scr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfe0ff"/><stop offset="1" stop-color="#a9c4f5"/></linearGradient></defs>` +
+      R(204, 42, 176, 194, 'url(#scr)', 16, 'stroke="#b3c4ee" stroke-width="4"') + C(348, 84, 15, '#ffe08a') +
+      [[222, 168, 22, 60], [246, 150, 22, 78], [270, 176, 20, 52], [294, 140, 24, 88], [322, 166, 20, 62], [346, 156, 22, 72]].map(b => R(b[0], b[1], b[2], b[3], '#8fb0ea', 3, 'opacity=".75"')).join('') +
+      S('M270,232 Q322,214 286,190 Q246,168 308,148 Q344,134 328,110', '#ffffff', 9) +
+      star(232, 96, 1, '#ffffff') + star(374, 150, .7, '#ffffff') + star(262, 70, .6, '#ffffff'),
+    people: [{
+      tx: -60, skin: '#f0c8a6', hair: '#b8bcc6', hairStyle: 'graySides', glasses: true, coat: true, top: '#5b3fa8', inner: '#b9a4ee', pants: '#22222e', shoe: '#111116', mouth: 'soft',
+      armL: [[166, 140], [158, 190], [218, 182]], armR: [[234, 140], [220, 176], [207, 120]],
+      legL: [[186, 262], [186, 292], [184, 318]], legR: [[214, 262], [214, 292], [218, 318]]
+    }]
+  };
+
+  const seated = { legL: [[183, 226], [126, 250], [196, 262]], legR: [[217, 226], [274, 250], [206, 258]], shoeDir: [0, 0] };
+
+  SC.KIAE = {
+    tint: '#ffe1ee',
+    bg: note(52, 56, '#ff9ec5', -10) + note(90, 104, '#a8e6cf', 8) + note(112, 40, '#c6b8f5', 5) + note(318, 40, '#ffd966', 10) + note(346, 90, '#b8b0f0', -8) +
+      note(50, 168, '#ffd966', 6) + note(330, 168, '#a8e6cf', -6) + note(58, 300, '#ffd966', 12) + note(322, 306, '#ff9ec5', -14) + note(88, 318, '#b8b0f0', 4) +
+      R(346, 250, 18, 24, '#c6b8f5', 4) + bulb(296, 118, .9),
+    people: [Object.assign({
+      ty: 45, skin: '#f4c9a8', hair: '#ee5c9a', hairStyle: 'pinkBun', top: '#1f9a8c', inner: '#f7f0f3', pants: '#243a6b', shoe: '#f070a8', mouth: 'big',
+      torsoExtra: R(167, 206, 66, 9, '#f5c542', 2),
+      armL: [[166, 140], [148, 176], [186, 120]], armR: [[234, 140], [254, 192], [232, 234]],
+      mid: `<g transform="rotate(-14 222 238)">${R(196, 222, 54, 34, '#2b2f3c', 5)}${R(200, 226, 46, 26, '#8fd0ff', 3)}</g>`
+    }, seated)]
+  };
+
+  SC.KIAR = {
+    tint: '#e8e2fb',
+    bg: [[290, 62, 22], [318, 50, 26], [346, 64, 20], [320, 80, 22]].map(c => C(c[0], c[1], c[2], '#f2eeff', 'stroke="#d3c9f5" stroke-width="3"')).join('') +
+      [[290, 62, 20], [318, 50, 24], [346, 64, 18], [320, 80, 20]].map(c => C(c[0], c[1], c[2], '#f2eeff')).join('') +
+      [[296, 50, 8, 30], [306, 40, 9, 40], [318, 52, 8, 28], [330, 46, 8, 34]].map(b => R(b[0], b[1] + 12, b[2], b[3], '#b7c8f5', 2)).join('') +
+      P('M340,80 Q350,60 346,50 Q362,62 340,80Z', '#8fd0a8') + C(268, 106, 7, '#f2eeff', 'stroke="#d3c9f5" stroke-width="3"') + C(256, 122, 4, '#f2eeff', 'stroke="#d3c9f5" stroke-width="2"') +
+      star(366, 34, 1, '#b39cf5') + star(272, 40, .7, '#b39cf5'),
+    people: [{
+      skin: '#f0c6a8', hair: '#2d1f3d', hairStyle: 'longWavy', top: '#b5a5f0', inner: '#a595e6', pants: '#8fb6e8', shoe: '#a08cf0', shoeDir: [1, 1], mouth: 'soft', torsoBottom: 244,
+      pre: L([[176, 252], [170, 152]], 7, '#33384a') + L([[170, 152], [150, 148]], 6, '#33384a') + L([[172, 252], [264, 252]], 8, '#33384a') + L([[264, 252], [280, 320]], 6, '#33384a'),
+      legL: [[192, 240], [262, 244], [272, 298]], legR: [[212, 238], [278, 238], [288, 292]],
+      mid: C(178, 292, 44, 'none', 'stroke="#2b2f3c" stroke-width="7"') + C(178, 292, 35, 'none', 'stroke="#6b7182" stroke-width="2.5"') +
+        [0, 60, 120, 180, 240, 300].map(a => `<line x1="178" y1="292" x2="${178 + 35 * Math.cos(a * Math.PI / 180)}" y2="${292 + 35 * Math.sin(a * Math.PI / 180)}" stroke="#8a90a2" stroke-width="2"/>`).join('') + C(178, 292, 6, '#2b2f3c') +
+        C(282, 322, 12, 'none', 'stroke="#2b2f3c" stroke-width="5"') +
+        `<g transform="rotate(-12 226 214)">${R(198, 198, 58, 34, '#2f3542', 5)}${R(202, 202, 50, 26, '#dfe7ff', 3)}</g>`,
+      armL: [[166, 140], [162, 190], [206, 214]], armR: [[234, 140], [232, 174], [212, 120]]
+    }]
+  };
+
+  SC.KPDE = {
+    tint: '#dcefee',
+    bg: R(204, 44, 172, 158, '#f4f6fb', 10, 'stroke="#c3cde0" stroke-width="4"') + R(216, 54, 72, 8, '#7d8bab', 4) +
+      (() => {
+        const hl = { '1,1': '#8fd0b0', '2,2': '#ffe08a', '4,1': '#a3c4f5', '3,3': '#ffe08a', '5,2': '#8fd0b0', '0,3': '#a3c4f5', '2,0': '#ffb6c8' };
+        let s = '';
+        for (let r = 0; r < 4; r++) for (let c = 0; c < 6; c++) s += R(214 + c * 26, 72 + r * 30, 24, 26, hl[c + ',' + r] || '#e8edf7', 4);
+        return s;
+      })() +
+      R(268, 264, 112, 56, '#5aa79a', 6) + R(276, 272, 44, 20, '#4a9488', 3) + R(326, 272, 44, 20, '#4a9488', 3) + R(276, 244, 52, 22, '#3b4e78', 3) + R(280, 230, 46, 16, '#e9c46a', 3) +
+      R(346, 242, 24, 24, '#c97b52', 4) + P('M358,242 Q340,214 348,198 Q366,220 358,242Z', '#5fae7b') + P('M358,242 Q376,216 368,200 Q350,220 358,242Z', '#7cc496'),
+    people: [{
+      tx: -50, skin: '#f2c7a4', hair: '#1a1a22', hairStyle: 'short', glasses: true, top: '#1f3b73', inner: '#f4f4f6', pants: '#7c7d68', shoe: '#1f1f26', mouth: 'big',
+      armL: [[166, 140], [154, 188], [184, 200]], armR: [[234, 140], [270, 156], [302, 138]],
+      mid: `<g transform="rotate(-8 184 204)">${R(162, 180, 40, 50, '#2c3f6b', 5)}${R(167, 187, 30, 38, '#ffffff', 2)}${S('M171,195 h22 M171,202 h18 M171,209 h22', '#b3bccf', 2)}${R(176, 178, 12, 6, '#8d93a6', 2)}</g>`,
+      legL: [[186, 226], [186, 276], [184, 318]], legR: [[214, 226], [214, 276], [218, 318]]
+    }]
+  };
+
+  SC.KPDR = {
+    tint: '#dbe8fb',
+    bg: P('M268,32 L340,58 Q340,142 268,194 Q196,142 196,58Z', '#bcd3f6', 'stroke="#8fb0e6" stroke-width="5"') +
+      P('M268,46 L328,67 Q328,136 268,180 Q208,136 208,67Z', '#d6e5fb') +
+      S('M240,104 l20,20 l38,-42', '#ffffff', 11) + S('M240,104 l20,20 l38,-42', '#2fa36b', 5) +
+      star(372, 44, .8, '#f5c542') + star(214, 30, .6, '#f5c542') + star(384, 120, .5, '#8fb0e6') +
+      bust(322, 190, '#c98a5e', '#4a2e1a', '#3aa0c8') + hardHat(322, 190, '#f5c542') +
+      `<g transform="translate(368 250) scale(.72)">${bust(0, 0, '#f2c7a4', '#3a2a20', '#8a6bbd')}${hardHat(0, 0, '#f5c542')}</g>`,
+    people: [{
+      tx: -50, skin: '#e6b48d', hair: '#2a1a12', hairStyle: 'capHair', top: '#5b8fd0', inner: '#f4f4f6', pants: '#2b3a55', shoe: '#5a3f2a', mouth: 'soft',
+      torsoExtra: P('M168,134 L188,128 L200,160 L212,128 L232,134 L228,224 L172,224Z', '#ff7a1a') +
+        S('M181,138 L178,222', '#eef1f5', 6) + S('M219,138 L222,222', '#eef1f5', 6) + R(172, 192, 56, 8, '#eef1f5', 1) +
+        R(206, 168, 16, 14, '#e8640c', 2),
+      mid: `<g transform="rotate(-8 176 208)">${R(154, 184, 40, 50, '#7a5a3a', 4)}${R(158, 190, 32, 39, '#ffffff', 2)}${S('M163,199 h22 M163,207 h18 M163,215 h22', '#b3bccf', 2)}${R(166, 181, 16, 7, '#8d93a6', 2)}${S('M163,224 l4,4 l8,-8', '#2fa36b', 2.5)}</g>`,
+      armL: [[166, 140], [146, 184], [172, 212]], armR: [[234, 140], [284, 172], [330, 194]],
+      post: P('M166,68 Q164,28 200,26 Q236,28 234,68 Q200,60 166,68Z', '#f7f7f5', 'stroke="#cfd4de" stroke-width="2"') + P('M168,66 Q200,78 232,66 L240,70 Q200,82 160,70Z', '#e9ecf1', 'stroke="#cfd4de" stroke-width="1.5"') +
+        R(196, 33, 8, 22, '#2fa36b', 2) + R(189, 40, 22, 8, '#2fa36b', 2),
+      legL: [[186, 226], [186, 276], [184, 318]], legR: [[214, 226], [214, 276], [218, 318]]
+    }]
+  };
+
+  const avatar = (x, y, ring, skin, hair) => C(x, y, 23, ring, 'stroke="#fff" stroke-width="3"') + C(x, y + 3, 14, skin) +
+    P(`M${x - 14},${y + 3} Q${x - 15},${y - 14} ${x},${y - 14} Q${x + 15},${y - 14} ${x + 14},${y + 3} Q${x + 6},${y - 7} ${x - 14},${y + 3}Z`, hair) + C(x - 5, y + 4, 1.6, '#222') + C(x + 5, y + 4, 1.6, '#222') + S(`M${x - 4},${y + 10} Q${x},${y + 13} ${x + 4},${y + 10}`, '#8a3535', 1.6);
+
+  SC.KPAE = {
+    tint: '#dcf1ef',
+    bg: C(200, 186, 150, 'none', 'stroke="#7fc8c0" stroke-width="3" stroke-dasharray="4 8" stroke-linecap="round"') +
+      avatar(110, 50, '#f08a2c', '#e0a67a', '#2b1d14') + avatar(290, 50, '#5fd39b', '#c98a5e', '#1a1a1a') + avatar(350, 182, '#3b82c4', '#f2c7a4', '#5a3b2a') +
+      avatar(50, 182, '#f5c542', '#8f5c3d', '#151515') + avatar(288, 304, '#6d4fc2', '#f0c095', '#7a4a2e') + avatar(112, 304, '#ee5c9a', '#e6b48d', '#3a2a20'),
+    people: [{
+      skin: '#7a4a2e', hair: '#151515', hairStyle: 'short', top: '#f08a2c', inner: '#ffffff', pants: '#1f8f86', shoe: '#5bc0eb', mouth: 'big',
+      armL: [[166, 140], [126, 154], [88, 166]], armR: [[234, 140], [274, 154], [312, 166]],
+      legL: [[183, 226], [166, 276], [150, 320]], legR: [[217, 226], [234, 276], [250, 320]], shoeDir: [-1, 1]
+    }]
+  };
+
+  SC.KPAR = {
+    tint: '#e2f2e6',
+    bg: leaf(126, 100, -32, '#b7dcc0') + leaf(166, 72, -8, '#93cba4') + leaf(250, 66, 12, '#b7dcc0') + leaf(296, 96, 34, '#93cba4') +
+      bust(46, 234, '#c98a5e', '#4a2e1a', '#7a9cc6') + bust(358, 226, '#f0c095', '#2a2018', '#c9a26a') + bust(330, 306, '#8f5c3d', '#151515', '#8a6bbd') + bust(78, 316, '#f2c7a4', '#8a5a34', '#5b8f5f'),
+    people: [Object.assign({
+      ty: 45, skin: '#f0c9aa', hair: '#c9ccd6', hairStyle: 'grayBob', eyes: 'closed', top: '#8fb79a', inner: '#f5ecd8', pants: '#9fc0ea', shoe: '#e8e2d8', mouth: 'soft', brow: '#9a9eab',
+      armL: [[166, 140], [134, 180], [112, 214]], armR: [[234, 140], [266, 180], [288, 214]]
+    }, seated)]
+  };
+
+  function buildSVG(code) {
+    const s = SC[code];
+    if (!s) return '';
+    const grad = `<radialGradient id="bgg" cx="50%" cy="56%" r="64%"><stop offset="0" stop-color="${s.tint}"/><stop offset="1" stop-color="${s.tint}" stop-opacity="0"/></radialGradient>`;
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 360" width="400" height="360"><defs>${grad}</defs>` +
+      `<rect width="400" height="360" fill="#ffffff"/><rect width="400" height="360" fill="url(#bgg)"/>` +
+      `<ellipse cx="200" cy="328" rx="120" ry="10" fill="#14284b" opacity=".08"/>` +
+      s.bg + s.people.map(person).join('') + (s.fg || '') + `</svg>`;
+  }
+  root.buildSVG = buildSVG;
+  if (typeof module !== 'undefined') module.exports = { buildSVG };
+})(typeof window !== 'undefined' ? window : globalThis);
+
+
+const TYPE_IMAGES = {};
+Object.keys(TYPES).forEach(c => { TYPE_IMAGES[c] = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(buildSVG(c)); });
+const TYPE_ALTS = {"CIDE": "ชายหนุ่มยืนบนโขดหินชี้ไปที่ยอดเขาที่มีธงปักอยู่", "CIDR": "หญิงสวมแว่นยืนครุ่นคิดหน้ากระดานวางกลยุทธ์รูปหมากรุก", "CIAE": "นักสำรวจสะพายเป้ ถือเข็มทิศและแผนที่ พร้อมภูเขาด้านหลัง", "CIAR": "หญิงผมม่วงนั่งจดสมุดอย่างเป็นตัวของตัวเอง มีภาพหลอดไฟความคิดลอยอยู่", "CPDE": "ผู้บัญชาการหญิงสวมผ้าคลุมสีแดง ชี้เป้าหมายบนกระดานแผนงาน", "CPDR": "ชายสวมแว่นถือแท็บเล็ตข้างตารางแผนงานที่ติ๊กถูกครบ", "CPAE": "หญิงกำลังต่อจิ๊กซอว์ชิ้นใหญ่สีเขียวและส้มอย่างคล่องแคล่ว", "CPAR": "ชายหนวดเคราถือกล่องเครื่องมือ ข้างป้ายรูปโล่และเส้นทางสำรอง", "KIDE": "หญิงสวมสูทสีฟ้ากางแขนพูดสร้างแรงบันดาลใจต่อหน้าทีม", "KIDR": "ชายสูงวัยสวมโค้ตม่วงยืนครุ่นคิด มองภาพเส้นทางสู่เมืองแห่งอนาคต", "KIAE": "หญิงผมสีชมพูนั่งขัดสมาธิกับแท็บเล็ต ล้อมรอบด้วยโพสต์อิทและหลอดไฟ", "KIAR": "หญิงนั่งรถเข็นถือแท็บเล็ต เหม่อมองภาพเมืองในจินตนาการ", "KPDE": "ชายถือคลิปบอร์ดยืนข้างตารางงานและโต๊ะทำงาน", "KPDR": "เจ้าหน้าที่ความปลอดภัย (จป.) สวมหมวกนิรภัยสีขาวและเสื้อกั๊กสะท้อนแสง ถือคลิปบอร์ด ยื่นแขนปกป้องเพื่อนร่วมงานที่สวมหมวกนิรภัยด้านหลัง ข้างโล่รูปเครื่องหมายถูก", "KPAE": "ชายกางแขนสองข้างท่ามกลางวงกลมภาพเพื่อนร่วมทีมที่เชื่อมโยงกัน", "KPAR": "หญิงผมสีเทานั่งสมาธิอย่างสงบท่ามกลางกลุ่มคนที่กำลังพูดคุย"};
+
+const CAREERS = {"CIDE": ["ผู้จัดการฝ่ายขาย", "ผู้อำนวยการฝ่ายพัฒนาธุรกิจ", "ผู้ประกอบการภายในองค์กร (Intrapreneur)", "หัวหน้าโครงการริเริ่มใหม่", "ผู้จัดการผลิตภัณฑ์ (Product Manager)"], "CIDR": ["นักวางกลยุทธ์องค์กร", "ที่ปรึกษาด้านธุรกิจ", "นักวิเคราะห์การแข่งขันและตลาด", "ผู้จัดการฝ่ายวางแผน", "ผู้บริหารสายกลยุทธ์"], "CIAE": ["ผู้จัดการฝ่ายนวัตกรรม", "นักการตลาดสายทดลอง (Growth Marketer)", "ผู้จัดการพัฒนาตลาดใหม่", "ผู้นำโครงการสตาร์ทอัพภายในองค์กร", "นักขายเชิงรุกในตลาดใหม่"], "CIAR": ["นักวิจัยและพัฒนา (R&D)", "นักออกแบบผลิตภัณฑ์", "สถาปนิกโซลูชัน", "นักพัฒนานวัตกรรม", "ที่ปรึกษาอิสระเฉพาะทาง"], "CPDE": ["ผู้จัดการฝ่ายปฏิบัติการ", "ผู้จัดการโครงการ (Project Manager)", "หัวหน้าทีมขาย", "ผู้จัดการโรงงานหรือหน้างาน", "ผู้อำนวยการฝ่ายผลิต"], "CPDR": ["ผู้จัดการฝ่ายควบคุมคุณภาพ", "นักวางแผนการผลิต", "ผู้ตรวจสอบภายใน", "เจ้าหน้าที่สำนักงานบริหารโครงการ (PMO)", "นักวิเคราะห์การเงิน"], "CPAE": ["ผู้จัดการฝ่ายบริการลูกค้า", "ผู้เชี่ยวชาญแก้ปัญหาหน้างาน", "ผู้ประสานงานโลจิสติกส์", "หัวหน้าทีมขายหน้าร้าน", "ผู้จัดการงานอีเวนต์"], "CPAR": ["นักบริหารความเสี่ยง", "ผู้จัดการความต่อเนื่องทางธุรกิจ (BCP)", "วิศวกรซ่อมบำรุง", "เจ้าหน้าที่จัดซื้อ", "ผู้ดูแลระบบไอทีและความปลอดภัย"], "KIDE": ["ผู้จัดการฝ่ายพัฒนาบุคลากร (L&D)", "โค้ชและวิทยากรภายในองค์กร", "ผู้จัดการฝ่ายสื่อสารองค์กร", "หัวหน้าทีมงานสร้างสรรค์", "HR Business Partner"], "KIDR": ["ผู้จัดการฝ่ายวัฒนธรรมองค์กร", "นักวางแผนกลยุทธ์ระยะยาว", "ที่ปรึกษาการเปลี่ยนแปลงองค์กร", "ผู้จัดการฝ่ายความยั่งยืนและ CSR", "ผู้บริหารสายวิสัยทัศน์"], "KIAE": ["นักออกแบบประสบการณ์ผู้ใช้ (UX)", "นักสร้างคอนเทนต์", "นักการตลาดสายสร้างสรรค์", "ผู้อำนวยการฝ่ายศิลป์", "นักออกแบบเวิร์กช็อป"], "KIAR": ["นักเขียนและผู้สร้างเนื้อหา", "นักวิจัยผู้ใช้ (User Researcher)", "นักออกแบบเชิงแนวคิด", "นักคิดเชิงนวัตกรรม", "ที่ปรึกษาด้านการพัฒนาตนเอง"], "KPDE": ["ผู้จัดการฝ่ายบริหารทั่วไป", "ผู้ประสานงานโครงการ", "ผู้จัดการฝ่ายทรัพยากรบุคคล", "ผู้จัดการงานปฏิบัติการ", "ผู้ช่วยผู้บริหาร"], "KPDR": ["เจ้าหน้าที่ดูแลพนักงาน (Employee Care)", "นักบัญชีและผู้ตรวจสอบเอกสาร", "ผู้จัดการฝ่ายสนับสนุนลูกค้า", "ผู้จัดการระบบคุณภาพ", "พี่เลี้ยงและผู้ดูแลทีม (Mentor)"], "KPAE": ["ผู้ประสานงานระหว่างแผนก", "ผู้จัดการบัญชีลูกค้า (Account Manager)", "ผู้จัดการความร่วมมือพันธมิตร", "นักประชาสัมพันธ์", "ผู้จัดการชุมชนออนไลน์ (Community Manager)"], "KPAR": ["ผู้ดูแลความสัมพันธ์พนักงาน", "นักจิตวิทยาองค์กรหรือที่ปรึกษา", "นักวิเคราะห์ด้านทรัพยากรบุคคล", "ผู้ประสานงานสวัสดิการ", "ผู้อำนวยการกลุ่ม/ผู้ดำเนินกระบวนการ (Facilitator)"]};
+
+/* รายละเอียดจุดแข็ง/สิ่งที่ควรพัฒนา/รูปแบบการทำงาน/การสื่อสาร ประกอบจากตัวอักษรแต่ละตัว */
+const TRAITS = {
+  C: { strength: "กล้าแข่งขันและตั้งมาตรฐานผลงานให้สูง", grow: "ระวังการผลักดันจนคนรอบข้างรู้สึกกดดัน", comm: "พูดตรงประเด็น เน้นผลลัพธ์และการตัดสินใจ" },
+  K: { strength: "ทำให้ทีมร่วมมือกันและรับฟังคนรอบข้างได้ดี", grow: "อาจเกรงใจจนไม่กล้าแสดงจุดยืนของตัวเอง", comm: "สื่อสารอย่างนุ่มนวลและใส่ใจความรู้สึกของทีม" },
+  I: { strength: "คิดนอกกรอบและมองเห็นความเป็นไปได้ใหม่ ๆ", grow: "ลองแปลงไอเดียให้เป็นขั้นตอนที่ทำได้จริงมากขึ้น", work: "ทำงานได้ดีเมื่อมีพื้นที่ให้ทดลองและเปลี่ยนแนวทางได้" },
+  P: { strength: "ลงมือทำจริงและใช้ประสบการณ์ให้เกิดผลลัพธ์", grow: "เปิดใจทดลองวิธีใหม่ ๆ บ้าง เพื่อไม่ติดอยู่กับกรอบเดิม", work: "ทำงานได้ดีเมื่อมีขั้นตอนชัดเจนและวิธีที่พิสูจน์แล้ว" },
+  D: { strength: "ตัดสินใจเร็วและยึดเป้าหมายได้อย่างมั่นคง", grow: "ฝึกยืดหยุ่นเมื่อสถานการณ์เปลี่ยนโดยไม่คาดคิด", work: "ชอบเป้าหมายที่ชัดเจนและเดินหน้าเป็นลำดับ" },
+  A: { strength: "ปรับตัวกับสถานการณ์ได้ดีและเปิดทางเลือกไว้เสมอ", grow: "กำหนดเป้าหมายและเส้นตายให้ชัดขึ้นเพื่อไม่ลอยตัว", work: "ชอบงานที่ปรับแผนได้ตามสถานการณ์" },
+  E: { strength: "สร้างบรรยากาศและเชื่อมต่อกับผู้คนได้ง่าย", grow: "ฝึกฟังและให้เวลาคิดก่อนแสดงออก", comm: "ชอบคุยแลกเปลี่ยนสด ๆ และแสดงความคิดเห็นทันที" },
+  R: { strength: "รอบคอบ ใคร่ครวญ และตรวจสอบรายละเอียดได้ดี", grow: "ลองสื่อสารความคิดให้เร็วขึ้นแทนการเก็บไว้คนเดียว", comm: "ชอบเตรียมความคิดก่อนพูดและสื่อสารเป็นลายลักษณ์อักษร" }
+};
+
+/* =========================================================
+   LOGIC
+   ========================================================= */
+/* =========================================================
+   นับจำนวนผู้ทำแบบทดสอบสำเร็จ (ไม่ส่งคำตอบ ผลลัพธ์ หรือข้อมูลส่วนบุคคลใด ๆ)
+   ส่งเพียงสัญญาณ "completed" 1 ครั้งต่ออุปกรณ์ เมื่อทำครบและขึ้นหน้าผลลัพธ์
+   provider: "none" (ปิด) | "goatcounter" | "custom"
+   - goatcounter: ใส่โค้ดบัญชี เช่น "my-guide" (ได้จาก https://www.goatcounter.com)
+   - custom: ใส่ URL ปลายทางของคุณเองที่รับ HTTP GET
+   หมายเหตุ: ต้องนำไฟล์นี้ไปโฮสต์บนเว็บของคุณเอง ในหน้า Claude Artifact ระบบจะบล็อกการส่งข้อมูลออกนอกหน้า
+   ========================================================= */
+const TRACKING = { provider: "goatcounter", goatcounter: "guide-personality", customUrl: "" };
+const COUNTED_KEY = "guide-completion-counted-v1";
+
+function trackingEnabled() {
+  return (TRACKING.provider === "goatcounter" && !!TRACKING.goatcounter) || (TRACKING.provider === "custom" && !!TRACKING.customUrl);
+}
+function trackCompletion() {
+  if (!trackingEnabled()) return;
+  try { if (localStorage.getItem(COUNTED_KEY)) return; } catch (e) { /* ถ้าอ่านไม่ได้ ให้นับต่อ */ }
+  const rnd = Math.random().toString(36).slice(2);
+  let url = "";
+  if (TRACKING.provider === "goatcounter") {
+    url = "https://" + encodeURIComponent(TRACKING.goatcounter) + ".goatcounter.com/count?p=" + encodeURIComponent("/completed") + "&t=" + encodeURIComponent("Completed test") + "&e=true&rnd=" + rnd;
+  } else {
+    url = TRACKING.customUrl + (TRACKING.customUrl.indexOf("?") >= 0 ? "&" : "?") + "event=completed&rnd=" + rnd;
+  }
+  try { new Image().src = url; } catch (e) { return; }
+  try { localStorage.setItem(COUNTED_KEY, "1"); } catch (e) { /* ignore */ }
+}
+
+const STORAGE_KEY = "guide-personality-v2";
+const SCALE = [
+  { v: 5, t: "เห็นด้วยอย่างยิ่ง", l: "เห็นด้วย<br>อย่างยิ่ง", side: "agree", sz: "xl" },
+  { v: 4, t: "เห็นด้วย", l: "เห็นด้วย", side: "agree", sz: "l" },
+  { v: 3, t: "เฉย ๆ", l: "เฉย ๆ", side: "neutral", sz: "m" },
+  { v: 2, t: "ไม่เห็นด้วย", l: "ไม่เห็นด้วย", side: "disagree", sz: "l" },
+  { v: 1, t: "ไม่เห็นด้วยอย่างยิ่ง", l: "ไม่เห็นด้วย<br>อย่างยิ่ง", side: "disagree", sz: "xl" }
+];
+const app = document.getElementById("app");
+
+function freshState() {
+  return { screen: "intro", idx: 0, answers: Array(QUESTIONS.length).fill(null), tb: {} };
+}
+let state = freshState();
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const s = JSON.parse(raw);
+    if (!s || !Array.isArray(s.answers) || s.answers.length !== QUESTIONS.length) return;
+    const answers = s.answers.map(a => (Number.isInteger(a) && a >= 1 && a <= 5 ? a : null));
+    const tb = {};
+    if (s.tb && typeof s.tb === "object") {
+      Object.keys(TIEBREAKS).forEach(k => {
+        const v = s.tb[k];
+        if (TIEBREAKS[k].options.some(o => o.letter === v)) tb[k] = v;
+      });
+    }
+    const screen = ["intro", "quiz", "result"].includes(s.screen) ? s.screen : "intro";
+    state = { screen, idx: Math.max(0, Math.min(Number(s.idx) || 0, 20)), answers, tb };
+    // ตรวจสอบความสมบูรณ์ของข้อมูล
+    if (state.screen === "result" && !resolveType()) state.screen = "quiz";
+    if (state.screen === "quiz") {
+      const items = getItems();
+      state.idx = Math.min(state.idx, items.length - 1);
+    }
+  } catch (e) { state = freshState(); }
+}
+function saveState() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) { /* ignore */ }
+}
+
+function calcScores(answers) {
+  // คะแนนตัวอักษรละ 2–10: ข้อเงื่อนไข "+" ใช้คะแนนที่เลือก (1–5) ข้อเงื่อนไข "-" กลับคะแนน (6 - คะแนน)
+  const scores = { C: 0, K: 0, I: 0, P: 0, D: 0, A: 0, E: 0, R: 0 };
+  QUESTIONS.forEach((q, i) => {
+    const v = answers[i];
+    if (v === null || v === undefined) return;
+    scores[q.letter] += q.condition === "+" ? v : 6 - v;
+  });
+  return scores;
+}
+function allBaseAnswered() { return state.answers.every(a => a !== null); }
+function tiedKeys(scores) { return PAIRS.filter(([a, b]) => scores[a] === scores[b]).map(([a, b]) => a + b); }
+
+function getItems() {
+  const items = QUESTIONS.map((q, i) => ({ type: "q", q, i }));
+  if (allBaseAnswered()) {
+    tiedKeys(calcScores(state.answers)).forEach(k => items.push({ type: "tb", key: k }));
+  }
+  return items;
+}
+function isAnswered(item) {
+  return item.type === "q" ? state.answers[item.i] !== null : !!state.tb[item.key];
+}
+function resolveType() {
+  if (!allBaseAnswered()) return null;
+  const scores = calcScores(state.answers);
+  const letters = [];
+  for (const [a, b] of PAIRS) {
+    if (scores[a] > scores[b]) letters.push(a);
+    else if (scores[b] > scores[a]) letters.push(b);
+    else if (state.tb[a + b]) letters.push(state.tb[a + b]);
+    else return null;
+  }
+  return { code: letters.join(""), scores, letters };
+}
+
+/* =========================================================
+   RENDER
+   ========================================================= */
+function focusHeading() {
+  const h = app.querySelector("[data-focus]");
+  if (h) { h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); }
+}
+
+const COMPASS_SVG = (size) => `<svg class="mark" width="${size}" height="${size}" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+  <circle cx="32" cy="32" r="28" fill="none" stroke="var(--navy)" stroke-width="4"/>
+  <circle cx="32" cy="32" r="21" fill="var(--sky)"/>
+  <polygon points="32,11 39,32 25,32" fill="var(--purple)"/>
+  <polygon points="32,53 39,32 25,32" fill="var(--green)"/>
+  <circle cx="32" cy="32" r="3.2" fill="var(--navy)"/>
+  <circle cx="32" cy="4" r="3.2" fill="var(--accent)"/>
+</svg>`;
+const WORDMARK = `<span class="wm">G<i>.</i>U<i>.</i>I<i>.</i>D<i>.</i>E<i>.</i></span>`;
+
+function galleryHTML() {
+  const cards = Object.keys(TYPES).map((code, i) => {
+    const t = TYPES[code];
+    const d = buildDetails(code.split(""));
+    return `
+      <article class="card type-card" aria-labelledby="tc-${code}">
+        <img src="${TYPE_IMAGES[code]}" alt="${TYPE_ALTS[code]}" width="400" height="360" loading="lazy">
+        <div class="body">
+          <div class="tc-top">
+            <span class="tc-no">${i + 1} / 16</span>
+            <span class="tc-code" aria-hidden="true">${code.split("").map(l => `<span>${l}</span>`).join("")}</span>
+          </div>
+          <h3 id="tc-${code}"><span class="sr-only">${code} </span>${t.en}</h3>
+          <div class="th">${t.th}</div>
+          <p class="d">${t.desc}</p>
+          <h4>จุดแข็ง</h4>
+          <ul class="plain">${d.strengths.map(x => `<li>${x}</li>`).join("")}</ul>
+          <h4>อาชีพและตำแหน่งงานที่เหมาะสมในองค์กร</h4>
+          <ul class="chips">${CAREERS[code].map(x => `<li>${x}</li>`).join("")}</ul>
+        </div>
+      </article>`;
+  }).join("");
+  return `
+    <section class="gallery" id="types" aria-labelledby="gt">
+      <div class="gallery-head">
+        <h2 id="gt">ทำความรู้จักบุคลิกภาพทั้ง 16 แบบ</h2>
+        <p>ดูตัวละครแต่ละแบบ พร้อมจุดแข็งและตำแหน่งงานที่มักเหมาะสมในองค์กร</p>
+      </div>
+      ${cards}
+      <p class="gallery-note">ข้อมูลอาชีพและตำแหน่งงานเป็นเพียงแนวทางเบื้องต้นเพื่อการสำรวจและพัฒนาบุคลากร ไม่ใช่ข้อกำหนดหรือเกณฑ์ตัดสินความเหมาะสมของบุคคล</p>
+      <div class="card end-cta">
+        <p style="margin:0 0 14px;font-weight:600">พร้อมค้นหาว่าคุณคือบุคลิกภาพแบบไหนแล้วหรือยัง?</p>
+        <button class="btn btn-primary btn-block" data-action="start">เริ่มค้นหาบุคลิกภาพของคุณ</button>
+      </div>
+    </section>`;
+}
+
+function setHeader(show) {
+  const t = document.getElementById("top");
+  if (t) t.hidden = !show;
+}
+
+function renderIntro() {
+  setHeader(false);
+  app.innerHTML = `
+    <section class="card intro enter" aria-labelledby="t">
+      <div class="hero-logo">
+        ${COMPASS_SVG(84)}
+        <h1 id="t" data-focus>${WORDMARK}<span class="sub">Personality Test</span></h1>
+      </div>
+      <p class="tagline" style="text-align:center">Get Your Identity, Discover Employee Potential</p>
+      <p class="th-name" style="text-align:center">แบบวัดบุคลิกภาพเพื่อค้นหาตัวตนและศักยภาพของสมาชิกในองค์กร</p>
+      <p class="purpose">G.U.I.D.E. Personality Test เป็นแบบวัดที่ช่วยสำรวจแนวโน้มบุคลิกภาพ รูปแบบการทำงาน การสื่อสาร จุดแข็ง และบทบาทที่สมาชิกในองค์กรอาจถนัด เพื่อส่งเสริมการเข้าใจตนเอง การพัฒนาศักยภาพ และการทำงานร่วมกันภายในองค์กรอย่างมีประสิทธิภาพ</p>
+      <p class="note">ผลลัพธ์ใช้เพื่อการสำรวจและพัฒนาบุคลากรเท่านั้น ไม่ใช่แบบทดสอบทางจิตวิทยามาตรฐาน และไม่ควรใช้เป็นเกณฑ์เพียงอย่างเดียวในการรับสมัคร ประเมินผลงาน เลื่อนตำแหน่ง หรือยุติการจ้างงาน</p>
+      <button class="btn btn-primary btn-block start" data-action="start">เริ่มค้นหาบุคลิกภาพของคุณ</button>
+      <button class="btn btn-ghost btn-block" style="margin-top:10px" data-action="scrollTypes">ดูบุคลิกภาพทั้ง 16 แบบ</button>
+    </section>
+    ${galleryHTML()}`;
+  focusHeading();
+}
+
+function renderQuiz(anim) {
+  setHeader(true);
+  const items = getItems();
+  state.idx = Math.max(0, Math.min(state.idx, items.length - 1));
+  const item = items[state.idx];
+  const total = items.length;
+  const answered = isAnswered(item);
+  const isLast = state.idx === total - 1 && allBaseAnswered() && answered && (item.type === "tb" || tiedKeys(calcScores(state.answers)).length === 0);
+  const pct = Math.round(((state.idx + (answered ? 1 : 0)) / total) * 100);
+
+  let label, body;
+  if (item.type === "q") {
+    label = `ข้อ ${state.idx + 1} จาก ${total}`;
+    const a = state.answers[item.i];
+    body = `
+      <p class="q-kicker center">คุณเห็นด้วยกับข้อความนี้มากน้อยแค่ไหน?</p>
+      <h2 class="q-text center" id="qt" data-focus>${item.q.statement}</h2>
+      <div class="likert" role="radiogroup" aria-labelledby="qt">
+        <div class="likert-row likert-labels" aria-hidden="true">${SCALE.map(o => `<span class="ll ${o.side}">${o.l}</span>`).join("")}</div>
+        <div class="likert-row">${SCALE.map(o => `<div class="cell"><button class="dot ${o.side} ${o.sz}" role="radio" aria-checked="${a === o.v}" aria-label="${o.t} (${o.v} คะแนน)" data-action="answer" data-value="${o.v}"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="5,12.5 10,17.5 19,7"/></svg></button></div>`).join("")}</div>
+      </div>`;
+  } else {
+    const t = TIEBREAKS[item.key];
+    const n = state.idx - QUESTIONS.length + 1;
+    label = `คำถามเพิ่มเติม ${n} จาก ${total - QUESTIONS.length}`;
+    const cur = state.tb[item.key];
+    body = `
+      <p class="q-kicker">คะแนนของคู่นี้เท่ากัน ตอบอีกข้อเพื่อตัดสิน</p>
+      <h2 class="q-text" id="qt" data-focus>${t.question}</h2>
+      <div class="choices stack" role="radiogroup" aria-labelledby="qt">
+        ${t.options.map(o => `<button class="choice opt" role="radio" aria-checked="${cur === o.letter}" data-action="choose" data-letter="${o.letter}">${o.text}</button>`).join("")}
+      </div>`;
+  }
+
+  app.innerHTML = `
+    <section aria-label="แบบทดสอบ">
+      <h1 class="page-title">ค้นหาบุคลิกภาพในการทำงานของคุณ</h1>
+      <div class="progress-meta"><span>${label}</span><span>${pct}%</span></div>
+      <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}" aria-label="ความคืบหน้า"><i style="width:${pct}%"></i></div>
+      <div class="card q-card ${anim === "back" ? "enter-back" : anim ? "enter" : ""}">${body}</div>
+      <div class="nav">
+        <button class="btn btn-ghost" data-action="back" ${state.idx === 0 ? "disabled" : ""}>ย้อนกลับ</button>
+        <button class="btn btn-primary" data-action="next" ${answered ? "" : "disabled"}>${isLast ? "ดูผลลัพธ์" : "ถัดไป"}</button>
+      </div>
+    </section>`;
+  if (anim) focusHeading();
+}
+
+function renderProcessing() {
+  setHeader(true);
+  app.innerHTML = `
+    <section class="card processing enter" aria-live="polite">
+      <div class="spinner" aria-hidden="true"></div>
+      <h2 data-focus>G.U.I.D.E. กำลังวิเคราะห์แนวโน้มบุคลิกภาพของคุณ…</h2>
+      <p class="lead">รอสักครู่ ผลลัพธ์กำลังจะแสดง</p>
+    </section>`;
+  focusHeading();
+}
+
+function buildDetails(letters) {
+  const [l1, l2, l3, l4] = letters;
+  return {
+    strengths: letters.map(l => TRAITS[l].strength),
+    grow: letters.map(l => TRAITS[l].grow),
+    work: [TRAITS[l2].work, TRAITS[l3].work],
+    comm: [TRAITS[l1].comm, TRAITS[l4].comm]
+  };
+}
+
+function renderResult() {
+  setHeader(true);
+  const r = resolveType();
+  if (!r) { state.screen = "quiz"; renderQuiz(true); return; }
+  const type = TYPES[r.code];
+  const d = buildDetails(r.letters);
+  const s = r.scores;
+
+  const pairsHtml = PAIRS.map(([a, b]) => {
+    const sum = s[a] + s[b];
+    const left = sum === 0 ? 50 : (s[a] / sum) * 100;
+    const tie = s[a] === s[b];
+    return `
+      <div class="pair">
+        <div class="pair-head"><span>${a} – ${LETTER_INFO[a].en} (${s[a]})</span><span class="r">(${s[b]}) ${LETTER_INFO[b].en} – ${b}</span></div>
+        <div class="pair-bar" role="img" aria-label="${a} ${s[a]} คะแนน ${b} ${s[b]} คะแนน"><i style="width:${left}%"></i></div>
+        ${tie ? `<div class="pair-note">คะแนนเท่ากัน จึงตัดสินด้วยคำถามเพิ่มเติม (ผลคือ ${state.tb[a + b]})</div>` : ""}
+      </div>`;
+  }).join("");
+
+  const gridHtml = ["C", "K", "I", "P", "D", "A", "E", "R"].map(l =>
+    `<div class="${r.letters.includes(l) ? "win" : ""}"><b>${s[l]}</b><small>${l}</small></div>`).join("");
+  const ul = arr => `<ul>${arr.map(x => `<li>${x}</li>`).join("")}</ul>`;
+
+  app.innerHTML = `
+    <section class="card enter" style="padding:0;overflow:hidden" aria-labelledby="rt">
+      <div class="result-hero">
+        <p class="q-kicker" style="margin:0 0 14px">ผลบุคลิกภาพ G.U.I.D.E. ของคุณ<br><small>Your G.U.I.D.E. Personality</small></p>
+        <img class="type-illus" src="${TYPE_IMAGES[r.code]}" alt="${TYPE_ALTS[r.code]}" width="400" height="360">
+        <div class="letters" aria-hidden="true">${r.letters.map(l => `<span>${l}</span>`).join("")}</div>
+        <h1 class="type-en" id="rt" data-focus><span class="sr-only">${r.code} </span>${type.en}</h1>
+        <div class="type-th">${type.th}</div>
+        <p class="type-desc">${type.desc}</p>
+      </div>
+      <div style="padding:6px 22px 26px">
+        <div class="section">
+          <h2>คะแนนของแต่ละตัวอักษร</h2>
+          <p class="mini-note" style="margin:-4px 0 12px;color:var(--muted);font-size:13.5px">คะแนนแต่ละตัวอักษรอยู่ระหว่าง 2–10 (ยิ่งสูง ยิ่งสะท้อนแนวโน้มด้านนั้น)</p>
+          <div class="score-grid">${gridHtml}</div>
+          ${pairsHtml}
+        </div>
+        <div class="section info-grid">
+          <div class="info"><h3>จุดแข็ง</h3>${ul(d.strengths)}</div>
+          <div class="info"><h3>สิ่งที่ควรพัฒนา</h3>${ul(d.grow)}</div>
+          <div class="info"><h3>รูปแบบการทำงาน</h3>${ul(d.work)}</div>
+          <div class="info"><h3>รูปแบบการสื่อสาร</h3>${ul(d.comm)}</div>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary wide" data-action="retake">ทำแบบทดสอบอีกครั้ง</button>
+          <button class="btn btn-ghost" data-action="copy">คัดลอกผลลัพธ์</button>
+          <button class="btn btn-ghost" data-action="download">ดาวน์โหลดผลลัพธ์เป็นภาพ</button>
+          <button class="btn btn-ghost" data-action="share">แชร์ผลลัพธ์</button>
+        </div>
+        <p class="disclaimer">ผลลัพธ์ใช้เพื่อการสำรวจและพัฒนาบุคลากรเท่านั้น ไม่ใช่แบบทดสอบทางจิตวิทยามาตรฐาน และไม่ควรใช้เป็นเกณฑ์เพียงอย่างเดียวในการรับสมัคร ประเมินผลงาน เลื่อนตำแหน่ง หรือยุติการจ้างงาน ผลลัพธ์สะท้อนแนวโน้มจากคำตอบในขณะนั้น บุคลิกภาพสามารถเปลี่ยนแปลงตามสถานการณ์และประสบการณ์ได้</p>
+      </div>
+    </section>`;
+  focusHeading();
+  window.scrollTo({ top: 0 });
+}
+
+function render(anim) {
+  if (state.screen === "intro") renderIntro();
+  else if (state.screen === "quiz") renderQuiz(anim);
+  else if (state.screen === "result") renderResult();
+}
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+function toast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => t.classList.remove("show"), 2200);
+}
+
+function refocus(sel) {
+  const el = app.querySelector(sel);
+  if (el) el.focus({ preventScroll: true });
+}
+
+function finish() {
+  state.screen = "result";
+  saveState();
+  trackCompletion();
+  renderProcessing();
+  setTimeout(() => { if (state.screen === "result") renderResult(); }, 1800);
+}
+
+function summaryText() {
+  const r = resolveType();
+  const type = TYPES[r.code];
+  const s = r.scores;
+  const line = PAIRS.map(([a, b]) => `${a} ${s[a]} : ${s[b]} ${b}`).join("  |  ");
+  const url = /^https?:/.test(location.href) ? location.href.split("#")[0] : "";
+  return `ผล G.U.I.D.E. Personality Test ของฉันคือ ${r.code} – ${type.en} (${type.th})\n${type.desc}\nคะแนน: ${line}${url ? `\nลองทำแบบทดสอบได้ที่ ${url}` : ""}`;
+}
+
+async function copyText(text) {
+  try {
+    if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(text); return true; }
+  } catch (e) { /* fallback below */ }
+  try {
+    const ta = document.createElement("textarea");
+    ta.value = text; ta.setAttribute("readonly", "");
+    ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    const ok = document.execCommand("copy");
+    document.body.removeChild(ta);
+    return ok;
+  } catch (e) { return false; }
+}
+
+function wrapLines(ctx, text, maxWidth) {
+  let words;
+  if (typeof Intl !== "undefined" && Intl.Segmenter) {
+    words = Array.from(new Intl.Segmenter("th", { granularity: "word" }).segment(text), x => x.segment);
+  } else { words = Array.from(text); }
+  const lines = []; let cur = "";
+  words.forEach(w => {
+    if (ctx.measureText(cur + w).width > maxWidth && cur) { lines.push(cur.trim()); cur = w; }
+    else cur += w;
+  });
+  if (cur.trim()) lines.push(cur.trim());
+  return lines;
+}
+
+async function downloadImage() {
+  const r = resolveType();
+  if (!r) return;
+  const type = TYPES[r.code];
+  try { await document.fonts.load('700 40px "Noto Sans Thai"'); await document.fonts.load('400 30px "Noto Sans Thai"'); } catch (e) {}
+  const W = 1080, H = 1500;
+  const illus = await new Promise(res => { const im = new Image(); im.onload = () => res(im); im.onerror = () => res(null); im.src = TYPE_IMAGES[r.code]; });
+  const canvas = document.createElement("canvas");
+  canvas.width = W; canvas.height = H;
+  const ctx = canvas.getContext("2d");
+  const FONT = '"Noto Sans Thai", "Sarabun", "Leelawadee UI", sans-serif';
+
+  ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = "#eef6fd"; ctx.fillRect(0, 0, W, 1010);
+  ctx.textAlign = "center"; ctx.textBaseline = "alphabetic";
+
+  ctx.fillStyle = "#14284b"; ctx.font = `800 44px ${FONT}`;
+  ctx.fillText("G.U.I.D.E. Personality Test Report", W / 2, 84);
+  ctx.fillStyle = "#6d4fc2"; ctx.font = `600 28px ${FONT}`;
+  ctx.fillText("Get Your Identity, Discover Employee Potential", W / 2, 132);
+
+  // illustration
+  const iw = 340, ih = Math.round(340 * 360 / 400), ix = (W - iw) / 2, iy = 165;
+  if (illus) {
+    ctx.save();
+    ctx.beginPath(); ctx.roundRect ? ctx.roundRect(ix, iy, iw, ih, 30) : ctx.rect(ix, iy, iw, ih);
+    ctx.clip(); ctx.drawImage(illus, ix, iy, iw, ih); ctx.restore();
+  }
+
+  // letter tiles
+  const tw = 130, th = 150, gap = 16;
+  const startX = (W - (tw * 4 + gap * 3)) / 2;
+  r.letters.forEach((l, i) => {
+    const x = startX + i * (tw + gap), y = 500;
+    ctx.beginPath(); ctx.roundRect ? ctx.roundRect(x, y, tw, th, 26) : ctx.rect(x, y, tw, th);
+    if (i % 2 === 0) { ctx.fillStyle = "#14284b"; ctx.fill(); ctx.fillStyle = "#ffffff"; }
+    else { ctx.fillStyle = "#ffffff"; ctx.fill(); ctx.lineWidth = 4; ctx.strokeStyle = "#14284b"; ctx.stroke(); ctx.fillStyle = "#14284b"; }
+    ctx.font = `800 88px ${FONT}`;
+    ctx.fillText(l, x + tw / 2, y + 108);
+  });
+
+  ctx.fillStyle = "#14284b"; ctx.font = `800 64px ${FONT}`;
+  ctx.fillText(type.en, W / 2, 735);
+  ctx.fillStyle = "#6d4fc2"; ctx.font = `600 40px ${FONT}`;
+  ctx.fillText(type.th, W / 2, 795);
+  ctx.fillStyle = "#55637d"; ctx.font = `400 32px ${FONT}`;
+  wrapLines(ctx, type.desc, 820).slice(0, 3).forEach((ln, i) => ctx.fillText(ln, W / 2, 862 + i * 48));
+
+  // bars
+  let y = 1085;
+  PAIRS.forEach(([a, b]) => {
+    const sa = r.scores[a], sb = r.scores[b], sum = sa + sb;
+    const bx = 120, bw = W - 240, bh = 26;
+    ctx.textAlign = "left"; ctx.fillStyle = "#14284b"; ctx.font = `600 30px ${FONT}`;
+    ctx.fillText(`${a} ${LETTER_INFO[a].en} (${sa})`, bx, y);
+    ctx.textAlign = "right";
+    ctx.fillText(`(${sb}) ${LETTER_INFO[b].en} ${b}`, bx + bw, y);
+    ctx.fillStyle = "#9cc7ee"; ctx.beginPath(); ctx.roundRect ? ctx.roundRect(bx, y + 18, bw, bh, 13) : ctx.rect(bx, y + 18, bw, bh); ctx.fill();
+    const lw = sum === 0 ? bw / 2 : (sa / sum) * bw;
+    if (lw > 0) {
+      ctx.fillStyle = "#1f3d75"; ctx.beginPath();
+      ctx.roundRect ? ctx.roundRect(bx, y + 18, Math.max(lw, 26), bh, 13) : ctx.rect(bx, y + 18, lw, bh);
+      ctx.fill();
+    }
+    y += 92;
+  });
+
+  ctx.textAlign = "center"; ctx.fillStyle = "#55637d"; ctx.font = `400 26px ${FONT}`;
+  ctx.fillText("แบบสำรวจตนเองเท่านั้น ไม่ใช่การวินิจฉัยทางจิตวิทยา", W / 2, H - 45);
+
+  canvas.toBlob(blob => {
+    if (!blob) { toast("สร้างภาพไม่สำเร็จ ลองอีกครั้ง"); return; }
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = `GUIDE-${r.code}.png`;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 1500);
+    toast("ดาวน์โหลดภาพแล้ว");
+  }, "image/png");
+}
+
+let advanceTimer = null;
+function autoAdvance() {
+  clearTimeout(advanceTimer);
+  advanceTimer = setTimeout(() => { if (state.screen === "quiz") actions.next(); }, 340);
+}
+
+const actions = {
+  scrollTypes() {
+    const el = document.getElementById("types");
+    if (!el) return;
+    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+  },
+  start() {
+    if (state.answers.every(a => a === null)) state.idx = 0;
+    state.screen = "quiz";
+    if (state.idx >= getItems().length) state.idx = 0;
+    saveState(); renderQuiz(true); window.scrollTo({ top: 0 });
+  },
+  restart() { state = freshState(); saveState(); state.screen = "quiz"; saveState(); renderQuiz(true); },
+  answer(btn) {
+    const item = getItems()[state.idx];
+    if (!item || item.type !== "q") return;
+    const v = parseInt(btn.dataset.value, 10);
+    if (!(v >= 1 && v <= 5)) return;
+    state.answers[item.i] = v;
+    saveState(); renderQuiz(false);
+    refocus('.dot[aria-checked="true"]');
+    autoAdvance();
+  },
+  choose(btn) {
+    const item = getItems()[state.idx];
+    if (!item || item.type !== "tb") return;
+    state.tb[item.key] = btn.dataset.letter;
+    saveState(); renderQuiz(false);
+    refocus('.choice[aria-checked="true"]');
+    autoAdvance();
+  },
+  next() {
+    clearTimeout(advanceTimer);
+    const items = getItems();
+    const item = items[state.idx];
+    if (!item || !isAnswered(item)) return;
+    if (state.idx < items.length - 1) { state.idx++; saveState(); renderQuiz(true); }
+    else finish();
+  },
+  back() {
+    clearTimeout(advanceTimer);
+    if (state.idx > 0) { state.idx--; saveState(); renderQuiz("back"); }
+  },
+  retake() {
+    state = freshState(); saveState(); renderIntro(); window.scrollTo({ top: 0 });
+  },
+  home() {
+    clearTimeout(advanceTimer);
+    const wasQuiz = state.screen === "quiz" && state.answers.some(a => a !== null);
+    state.screen = "intro";
+    saveState();
+    renderIntro();
+    window.scrollTo({ top: 0 });
+    if (wasQuiz) toast("บันทึกความคืบหน้าไว้แล้ว กด “เริ่ม” เพื่อทำต่อ");
+  },
+  async copy() {
+    const ok = await copyText(summaryText());
+    toast(ok ? "คัดลอกผลลัพธ์แล้ว" : "คัดลอกไม่สำเร็จ ลองเลือกข้อความเอง");
+  },
+  download() { downloadImage(); },
+  async share() {
+    const text = summaryText();
+    const r = resolveType();
+    if (navigator.share) {
+      try {
+        const data = { title: "G.U.I.D.E. Personality Test", text };
+        if (/^https?:/.test(location.href)) data.url = location.href.split("#")[0];
+        await navigator.share(data);
+        return;
+      } catch (e) { if (e && e.name === "AbortError") return; }
+    }
+    const ok = await copyText(text);
+    toast(ok ? "คัดลอกข้อความสำหรับแชร์แล้ว นำไปวางได้เลย" : "แชร์ไม่สำเร็จ");
+  }
+};
+
+document.addEventListener("keydown", e => {
+  if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+  const cur = document.activeElement;
+  if (!cur || !cur.classList || !cur.classList.contains("dot")) return;
+  const dots = Array.from(app.querySelectorAll(".dot"));
+  const k = dots.indexOf(cur) + (e.key === "ArrowRight" ? 1 : -1);
+  if (k >= 0 && k < dots.length) { e.preventDefault(); dots[k].focus(); }
+});
+
+document.addEventListener("click", e => {
+  const btn = e.target.closest("[data-action]");
+  if (!btn || btn.disabled) return;
+  const fn = actions[btn.dataset.action];
+  if (fn) fn(btn);
+});
+
+/* เริ่มต้น */
+if (trackingEnabled()) {
+  const f = document.querySelector(".credit");
+  if (f) { const p = document.createElement("p"); p.className = "credit-privacy"; p.style.marginTop = "10px"; p.style.fontSize = "12.5px"; p.textContent = "เว็บนี้นับเฉพาะจำนวนผู้ทำแบบทดสอบเสร็จ ไม่บันทึกคำตอบ ผลลัพธ์ หรือข้อมูลส่วนบุคคล"; f.appendChild(p); }
+}
+document.getElementById("top").innerHTML = COMPASS_SVG(34) + `<div class="brand">${WORDMARK} Personality Test</div>` +
+  `<button type="button" class="home-btn" data-action="home" aria-label="กลับหน้าหลัก"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10.5V20h13v-9.5"/><path d="M10 20v-5.5h4V20"/></svg>หน้าหลัก</button>`;
+loadState();
+if (state.screen === "result") renderResult(); else render(true);
+</script>
+</body>
+</html>
