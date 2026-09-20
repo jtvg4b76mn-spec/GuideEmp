@@ -259,6 +259,13 @@
   .type-card ul.plain li { margin: 3px 0; }
   .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
   .chips li { background: var(--sky-2); border: 1px solid var(--green); color: var(--text); border-radius: 999px; padding: 4px 12px; font-size: 14px; }
+  .look { margin-top: 12px; }
+  .look h5 { font-size: 12.5px; color: var(--muted); font-weight: 600; margin: 0 0 6px; }
+  .look h5 small { font-weight: 400; }
+  .look ul { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+  .look li { display: inline-flex; align-items: center; gap: 5px; font-size: 12.5px; line-height: 1.3; background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 3px 9px; color: var(--text); }
+  .look li span { font-size: 14px; line-height: 1; }
+  .result-hero .look ul { justify-content: center; }
   .gallery-note { color: var(--muted); font-size: 13.5px; margin-top: 16px; }
   .end-cta { margin-top: 22px; text-align: center; }
   .type-illus { display: block; width: min(280px, 78%); aspect-ratio: 10 / 9; object-fit: cover; margin: 0 auto 20px; border-radius: 22px; border: 1px solid var(--line); background: #fff; box-shadow: var(--shadow); }
@@ -942,6 +949,30 @@ const COMPASS_SVG = (size) => `<svg class="mark" width="${size}" height="${size}
 </svg>`;
 const WORDMARK = `<span class="wm">G<i>.</i>U<i>.</i>I<i>.</i>D<i>.</i>E<i>.</i></span>`;
 
+const LOOKALIKES = {
+  CIDE: [["🥋","Panipak Wongpattanakit"],["🥊","Buakaw Banchamek"],["🏀","Michael Jordan"],["🎾","Serena Williams"]],
+  CIDR: [["🏸","Ratchanok Intanon"],["⚽","Chanathip Songkrasin"],["📈","Warren Buffett"],["♟️","Magnus Carlsen"]],
+  CIAE: [["🎤","Lisa (BLACKPINK)"],["🎬","Nadech Kugimiya"],["🚀","Richard Branson"],["✈️","Amelia Earhart"]],
+  CIAR: [["🎤","Milli"],["🎥","Nawapol Thamrongrattanarit"],["⚡","Nikola Tesla"],["🎸","Bob Dylan"]],
+  CPDE: [["⚽","Nualphan Lamsam (Madam Pang)"],["🏢","Charoen Sirivadhanabhakdi"],["🍳","Gordon Ramsay"],["📊","Jack Welch"]],
+  CPDR: [["🍽️","Thitid Tassanakajohn (Chef Ton)"],["🍳","Pichaya Soontornyanakij (Chef Pam)"],["💻","Tim Cook"],["⚽","Lionel Messi"]],
+  CPAE: [["🥋","Tony Jaa"],["🎙️","Note Udom"],["🎬","Jackie Chan"],["🎭","Robin Williams"]],
+  CPAR: [["🥊","Somluck Kamsing"],["⛳","Ariya Jutanugarn"],["🏕️","Bear Grylls"],["🧭","Ernest Shackleton"]],
+  KIDE: [["🏃","Toon Bodyslam"],["🎤","Bird Thongchai"],["📺","Oprah Winfrey"],["✊","Martin Luther King Jr."]],
+  KIDR: [["💡","Mechai Viravaidya"],["🏢","Dhanin Chearavanont"],["💻","Bill Gates"],["🕊️","Mahatma Gandhi"]],
+  KIAE: [["🎬","Banjong Pisanthanakun"],["🎭","Baifern Pimchanok"],["🏰","Walt Disney"],["🎶","Pharrell Williams"]],
+  KIAR: [["🎞️","Apichatpong Weerasethakul"],["📚","Prabda Yoon"],["🎵","John Lennon"],["🎨","Hayao Miyazaki"]],
+  KPDE: [["🏦","Banthoon Lamsam"],["⚡","Sarath Ratanavadi"],["📱","Sheryl Sandberg"],["🛒","Sam Walton"]],
+  KPDR: [["🧤","Kawin Thamsatchanan"],["⚽","Teerasil Dangda"],["📺","Fred Rogers"],["⚕️","Florence Nightingale"]],
+  KPAE: [["🎬","Yaya Urassaya"],["🎬","Mario Maurer"],["🎬","Tom Hanks"],["📖","Dale Carnegie"]],
+  KPAR: [["🎤","Toni Rakkaen"],["🎬","Ananda Everingham"],["💻","Satya Nadella"],["🎞️","Keanu Reeves"]]
+};
+function lookalikeHTML(code) {
+  const list = LOOKALIKES[code];
+  if (!list) return "";
+  return `<div class="look"><h5>บุคลิกที่คล้ายกับ... <small>(เพื่อความสนุก)</small></h5><ul>${list.map(([ic, n]) => `<li><span aria-hidden="true">${ic}</span>${n}</li>`).join("")}</ul></div>`;
+}
+
 function galleryHTML() {
   const cards = Object.keys(TYPES).map((code, i) => {
     const t = TYPES[code];
@@ -957,6 +988,7 @@ function galleryHTML() {
           <h3 id="tc-${code}"><span class="sr-only">${code} </span>${t.en}</h3>
           <div class="th">${t.th}</div>
           <p class="d">${t.desc}</p>
+          ${lookalikeHTML(code)}
           <h4>จุดแข็ง</h4>
           <ul class="plain">${d.strengths.map(x => `<li>${x}</li>`).join("")}</ul>
           <h4>อาชีพและตำแหน่งงานที่เหมาะสมในองค์กร</h4>
@@ -1105,6 +1137,7 @@ function renderResult() {
         <h1 class="type-en" id="rt" data-focus><span class="sr-only">${r.code} </span>${type.en}</h1>
         <div class="type-th">${type.th}</div>
         <p class="type-desc">${type.desc}</p>
+        ${lookalikeHTML(r.code)}
       </div>
       <div style="padding:6px 22px 26px">
         <div class="section">
